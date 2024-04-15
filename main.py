@@ -22,20 +22,21 @@ if __name__ == "__main__":
                         help='number of epochs')
     parser.add_argument('--weight_decay', type=float, default=1e-12,
                         help='weight decay')
-    parser.add_argument('--num_workers', type=int, default=4,
+    parser.add_argument('--num_workers', type=int, default=32,
                         help='Num workers in dataloader')
     parser.add_argument('--batch_size', type=int, default=100,
                         help='Batch size. Does not scale with number of gpus.')
     parser.add_argument('--lr', type=float, default=3e-5,
                         help='learning rate')
-    parser.add_argument('--model', type=str, default="DEGNN",
+    parser.add_argument('--model', type=str, default="fcn",
                         help='Model name')
-    parser.add_argument('--gpus_num', type=str, default="1",
+    parser.add_argument('--gpus_num', type=str, default="0",
                         help='Model name')
     parser.add_argument('-g', '--gpus', default=True, type=bool,
                         help='number of gpus to use (assumes all are on one node)')
     parser.add_argument('--seed', type=int, default=-1, metavar='N',
                         help='the rand seed')
+    parser.add_argument('--task', type=str, default="spg")
 
     args = parser.parse_args()
     if args.seed < 0:

@@ -7,6 +7,7 @@ from model.fcn import FCN
 from dataset.dataset import ASEDataset
 from tqdm import tqdm
 import time
+from sklearn.metrics import f1_score
 def train(args):
 
     if args.gpus:
@@ -21,44 +22,49 @@ def train(args):
     # inter = t2 - t1
     # print(inter)
 
-    train_dataset = ASEDataset('/data/zzn/xrdsim/train_1/binxrd.db', split='train')
-    val_dataset = ASEDataset('/data/zzn/xrdsim/val_db/test_binxrd.db', split='val')
-    test_dataset = ASEDataset('/data/zzn/xrdsim/test_db/binxrd.db', split='test')
+    train_dataset = ASEDataset(['/data/zzn/xrdsim/train_1/binxrd.db','/data/zzn/xrdsim/train_2/binxrd.db'])
+    val_dataset = ASEDataset(['/data/zzn/xrdsim/val_db/test_binxrd.db'])
+    test_dataset = ASEDataset(['/data/zzn/xrdsim/test_db/binxrd.db'])
 
 
 
-    train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=64)
-    val_loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=True, num_workers=64)
-    test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=64)
+    train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
+    val_loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
+    test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
     # for batch in test_loader:
     #     print(batch['latt_dis'], batch['intensity'], batch['spg'], batch['crysystem'], batch['split'])
 
     # Initialize the model
-    model = FCN(drop_rate=0.2, drop_rate_2=0.4)
-    model = model.to(device)
+    if args.task=='spg':
+        if args.model == 'fcn':
+            model = FCN(drop_rate=0.2, drop_rate_2=0.4)
 
+    model = model.to(device)
     # Define loss function and optimizer
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=args.lr)
-
     # Training loop
     best_val_loss = 1e8
     best_test_loss = 1e8
     best_epoch = 0
     best_test_accuracy = 0
+    best_test_microf1=0
+    best_test_macrof1=0
     test_interval = 10
     for epoch in range(args.epochs):
-        train_loss, train_accuracy = run_epoch(model, optimizer, criterion, epoch, train_loader, device, args)
+        train_loss, train_accuracy,_ = run_epoch(model, optimizer, criterion, epoch, train_loader, device, args)
         if epoch % test_interval == 0 or epoch == args.epochs-1:
-            val_loss, val_accuracy = run_epoch(model, optimizer, criterion, epoch, val_loader,device, args, backprop=False)
-            test_loss, test_accuracy = run_epoch(model, optimizer, criterion, epoch, test_loader,device, args, backprop=False)
+            val_loss, val_accuracy,_ = run_epoch(model, optimizer, criterion, epoch, val_loader,device, args, backprop=False)
+            test_loss, test_accuracy,res = run_epoch(model, optimizer, criterion, epoch, test_loader,device, args, backprop=False)
             if val_loss < best_val_loss:
                 best_val_loss = val_loss
                 best_test_loss = test_loss
                 best_test_accuracy = test_accuracy
+                best_test_microf1=res['micro_f1']
+                best_test_macrof1=res['macro_f1']
                 best_epoch = epoch
-            print("*** Best Val Loss: %.5f \t Best Test Loss: %.5f \t Best Test Accuracy: %.5f \t Best epoch %d" %
-                (best_val_loss, best_test_loss, best_test_accuracy, best_epoch))
+            print("*** Best Val Loss: %.5f \t Best Test Loss: %.5f \t Best Test Accuracy: %.5f \t Best Micro-F1: %.5f \t Best Macro-F1: %.5f\t Best epoch %d" %
+                (best_val_loss, best_test_loss, best_test_accuracy,best_test_microf1,best_test_macrof1, best_epoch))
 
             if epoch - best_epoch > 100:
                 break
@@ -69,19 +75,25 @@ def run_epoch(model, optimizer, criterion, epoch, loader, device, args, backprop
         model.train()
     else:
         model.eval()
-    res = {'epoch': epoch, 'loss': 0, 'accuracy': 0 ,'counter': 0}
+    res = {'epoch': epoch, 'loss': 0, 'accuracy': 0, 'micro_f1': 0, 'macro_f1': 0 ,'counter': 0}
+    all_labels = []
+    all_predicted = []
     for batch_index, data in enumerate(tqdm(loader)):
-        inputs, labels = data['intensity'].to(device), data['spg'].to(device)
-        inputs = inputs.unsqueeze(1)
-        batch_size=inputs.shape[0]
+        intensity, latt_dis,crysystem_labels,spg_labels = data['intensity'].to(device),data['latt_dis'].to(device), data['crysystem'].to(device), data['spg'].to(device)
+        intensity = intensity.unsqueeze(1)
+        if args.task=='spg':
+            labels=spg_labels
+        elif args.task=='crysystem':
+            labels=crysystem_labels
+        batch_size=intensity.shape[0]
         if backprop:
             optimizer.zero_grad()
-            outputs = model(inputs)
+            outputs = model(intensity)
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
         else:
-            outputs = model(inputs)
+            outputs = model(intensity)
             loss = criterion(outputs, labels)
 
         _, predicted = torch.max(outputs, 1)
@@ -89,10 +101,19 @@ def run_epoch(model, optimizer, criterion, epoch, loader, device, args, backprop
         res['accuracy'] += accuracy
         res['loss'] += loss.item()*batch_size
         res['counter'] += batch_size
+
+        all_labels.extend(labels.cpu().numpy())
+        all_predicted.extend(predicted.cpu().numpy())
+
+    micro_f1 = f1_score(all_labels, all_predicted, average='micro')
+    macro_f1 = f1_score(all_labels, all_predicted, average='macro')
+
+    res['micro_f1'] = micro_f1
+    res['macro_f1'] = macro_f1
     if not backprop:
         prefix = "==> "
     else:
         prefix = " "
     print('%s epoch %d avg loss: %.5f' % (prefix, epoch, res['loss'] / res['counter']))
 
-    return res['loss'] / res['counter'] , res['accuracy']/res['counter']
+    return res['loss'] / res['counter'] , res['accuracy']/res['counter'], res
