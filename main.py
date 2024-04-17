@@ -18,7 +18,7 @@ def set_seed(seed=3407):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--epochs', type=int, default=5000,
+    parser.add_argument('--epochs', type=int, default=10,
                         help='number of epochs')
     parser.add_argument('--weight_decay', type=float, default=1e-12,
                         help='weight decay')
@@ -28,7 +28,7 @@ if __name__ == "__main__":
                         help='Batch size. Does not scale with number of gpus.')
     parser.add_argument('--lr', type=float, default=3e-5,
                         help='learning rate')
-    parser.add_argument('--model', type=str, default="fcn",
+    parser.add_argument('--model', type=str, default="icsd",
                         help='Model name')
     parser.add_argument('--gpus_num', type=str, default="0",
                         help='Model name')
@@ -36,7 +36,7 @@ if __name__ == "__main__":
                         help='number of gpus to use (assumes all are on one node)')
     parser.add_argument('--seed', type=int, default=-1, metavar='N',
                         help='the rand seed')
-    parser.add_argument('--task', type=str, default="spg")
+    parser.add_argument('--task', type=str, default="crysystem")
 
     args = parser.parse_args()
     if args.seed < 0:
