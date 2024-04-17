@@ -4,16 +4,21 @@ import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 import torch.nn.functional as F
 from model.fcn import FCN
+from model import IUCrJ_CNNspg
 from dataset.dataset import ASEDataset
 from tqdm import tqdm
 import time
 from sklearn.metrics import f1_score
+import os
+from utils.tools import EarlyStopping
+
+    
 def train(args):
 
-    if args.gpus:
-        device = torch.device('cuda:' + str(args.gpus_num))
+    if args.use_gpu:
+        device = torch.device('cuda:{}'.format(args.gpu))
     else:
-        device = 'cpu'
+        device = torch.device('cpu')
     # t1=time.time()
     # train_file_paths = ['/hpc2hdd/home/zzheng078/jhspoolers/xrdsim/train_1/binxrd.db']
     # val_file_paths = ['/hpc2hdd/home/zzheng078/jhspoolers/xrdsim/val_db/test_binxrd.db']
@@ -22,15 +27,14 @@ def train(args):
     # inter = t2 - t1
     # print(inter)
 
-    train_dataset = ASEDataset(['/data/zzn/xrdsim/train_1/binxrd.db','/data/zzn/xrdsim/train_2/binxrd.db'])
-    val_dataset = ASEDataset(['/data/zzn/xrdsim/val_db/test_binxrd.db'])
-    test_dataset = ASEDataset(['/data/zzn/xrdsim/test_db/binxrd.db'])
-
+    train_dataset = ASEDataset(['/home/trf/python_work/XRD_Data/xrdsim/train_1/binxrd.db','/home/trf/python_work/XRD_Data/xrdsim/train_2/binxrd.db'])
+    val_dataset = ASEDataset(['/home/trf/python_work/XRD_Data/xrdsim/val_db/test_binxrd.db'])
+    test_dataset = ASEDataset(['/home/trf/python_work/XRD_Data/xrdsim/test_db/binxrd.db'])
 
 
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
-    val_loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
-    test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
+    val_loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers,drop_last=False)
+    test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers,drop_last=False)
     # for batch in test_loader:
     #     print(batch['latt_dis'], batch['intensity'], batch['spg'], batch['crysystem'], batch['split'])
 
@@ -38,8 +42,16 @@ def train(args):
     if args.task=='spg':
         if args.model == 'fcn':
             model = FCN(drop_rate=0.2, drop_rate_2=0.4)
-
+        if args.model == 'IUCrj_CNN':
+            model = IUCrJ_CNNspg.Model()
+            
+    save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_wd{args.weight_decay}'
+    if not os.path.exists('./checkpoints'):
+        os.mkdir('./checkpoints')
+    os.makedirs(save_path, exist_ok=True)
+    
     model = model.to(device)
+        
     # Define loss function and optimizer
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=args.lr)
@@ -51,25 +63,29 @@ def train(args):
     best_test_microf1=0
     best_test_macrof1=0
     test_interval = 10
+    early_stopping = EarlyStopping(patience=args.patience, verbose=True)
     for epoch in range(args.epochs):
         train_loss, train_accuracy,_ = run_epoch(model, optimizer, criterion, epoch, train_loader, device, args)
-        if epoch % test_interval == 0 or epoch == args.epochs-1:
-            val_loss, val_accuracy,_ = run_epoch(model, optimizer, criterion, epoch, val_loader,device, args, backprop=False)
-            test_loss, test_accuracy,res = run_epoch(model, optimizer, criterion, epoch, test_loader,device, args, backprop=False)
-            if val_loss < best_val_loss:
-                best_val_loss = val_loss
-                best_test_loss = test_loss
-                best_test_accuracy = test_accuracy
-                best_test_microf1=res['micro_f1']
-                best_test_macrof1=res['macro_f1']
-                best_epoch = epoch
-            print("*** Best Val Loss: %.5f \t Best Test Loss: %.5f \t Best Test Accuracy: %.5f \t Best Micro-F1: %.5f \t Best Macro-F1: %.5f\t Best epoch %d" %
+        val_loss, val_accuracy,_ = run_epoch(model, optimizer, criterion, epoch, val_loader,device, args, backprop=False)
+        test_loss, test_accuracy,res = run_epoch(model, optimizer, criterion, epoch, test_loader,device, args, backprop=False)
+        if val_loss < best_val_loss:
+            best_val_loss = val_loss
+            best_test_loss = test_loss
+            best_test_accuracy = test_accuracy
+            best_test_microf1=res['micro_f1']
+            best_test_macrof1=res['macro_f1']
+            best_epoch = epoch
+            
+        early_stopping(val_loss, model, save_path)
+        if early_stopping.early_stop:
+            print("Early stopping")
+            break
+        
+    print("*** Best Val Loss: %.5f \t Best Test Loss: %.5f \t Best Test Accuracy: %.5f \t Best Micro-F1: %.5f \t Best Macro-F1: %.5f\t Best epoch %d" %
                 (best_val_loss, best_test_loss, best_test_accuracy,best_test_microf1,best_test_macrof1, best_epoch))
 
-            if epoch - best_epoch > 100:
-                break
-
     return best_test_accuracy
+
 def run_epoch(model, optimizer, criterion, epoch, loader, device, args, backprop=True):
     if backprop:
         model.train()
