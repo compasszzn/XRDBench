@@ -1,0 +1,63 @@
+wandb_version: 1
+
+epochs:
+  desc: null
+  value: 100
+model:
+  desc: null
+  value: IUCrj_CNN
+seed:
+  desc: null
+  value: 2023
+task:
+  desc: null
+  value: spg
+weight_decay:
+  desc: null
+  value: 1.0e-12
+num_workers:
+  desc: null
+  value: 2
+batch_size:
+  desc: null
+  value: 64
+lr:
+  desc: null
+  value: 1.0e-05
+patience:
+  desc: null
+  value: 5
+use_gpu:
+  desc: null
+  value: true
+gpu:
+  desc: null
+  value: 2
+_wandb:
+  desc: null
+  value:
+    python_version: 3.10.13
+    cli_version: 0.15.10
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1713373973.222757
+    t:
+      1:
+      - 1
+      - 5
+      - 53
+      - 55
+      2:
+      - 1
+      - 5
+      - 53
+      - 55
+      3:
+      - 13
+      - 16
+      - 23
+      4: 3.10.13
+      5: 0.15.10
+      8:
+      - 5

@@ -11,7 +11,8 @@ import time
 from sklearn.metrics import f1_score
 import os
 from utils.tools import EarlyStopping
-
+import json
+import wandb
     
 def train(args):
 
@@ -49,6 +50,8 @@ def train(args):
     if not os.path.exists('./checkpoints'):
         os.mkdir('./checkpoints')
     os.makedirs(save_path, exist_ok=True)
+    with open(save_path+'/args.json', 'w') as f:
+        json.dump(args.__dict__, f)
     
     model = model.to(device)
         
@@ -57,6 +60,7 @@ def train(args):
     optimizer = optim.Adam(model.parameters(), lr=args.lr)
     # Training loop
     best_val_loss = 1e8
+    best_val_accuracy = 0
     best_test_loss = 1e8
     best_epoch = 0
     best_test_accuracy = 0
@@ -70,17 +74,20 @@ def train(args):
         test_loss, test_accuracy,res = run_epoch(model, optimizer, criterion, epoch, test_loader,device, args, backprop=False)
         if val_loss < best_val_loss:
             best_val_loss = val_loss
+            best_val_accuracy = val_accuracy
             best_test_loss = test_loss
             best_test_accuracy = test_accuracy
             best_test_microf1=res['micro_f1']
             best_test_macrof1=res['macro_f1']
             best_epoch = epoch
-            
+        wandb.log({"epoch": epoch, "train_loss": train_loss, "val_loss": val_loss, "val_acc": val_accuracy, 
+                   "test_loss":test_loss, "test_f1": res['macro_f1'], "test_acc": test_accuracy})
         early_stopping(val_loss, model, save_path)
         if early_stopping.early_stop:
             print("Early stopping")
             break
-        
+    wandb.log({"epoch": epoch+1, "train_loss": train_loss, "val_loss": best_val_loss, "val_acc": best_val_accuracy, 
+                   "test_loss":best_test_loss, "test_f1": best_test_macrof1, "test_acc": best_test_accuracy})   
     print("*** Best Val Loss: %.5f \t Best Test Loss: %.5f \t Best Test Accuracy: %.5f \t Best Micro-F1: %.5f \t Best Macro-F1: %.5f\t Best epoch %d" %
                 (best_val_loss, best_test_loss, best_test_accuracy,best_test_microf1,best_test_macrof1, best_epoch))
 

@@ -5,6 +5,8 @@ import torch.nn.functional as F
 import numpy as np
 import os
 from train import train
+import datetime
+import wandb
 
 def set_seed(seed=3407):
     os.environ['PYTHONHASHSEED'] = str(seed)
@@ -48,5 +50,14 @@ if __name__ == "__main__":
     else:
         seed = args.seed
     set_seed(seed)
-
+    nowtime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    wandb.init(
+        # set the wandb project where this run will be logged
+        project="XRDBench",
+        
+        # track hyperparameters and run metadata
+        config=args.__dict__,
+        name=nowtime
+        )
     train(args)
+    wandb.finish()
