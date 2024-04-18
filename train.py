@@ -12,7 +12,7 @@ from model.icsd import ICSD
 from model.mp import MP
 from model.xca import XCA
 from model.autoanalyzer import AUTOANALYZER
-from model import IUCrJ_CNNspg
+from model import IUCrJ_CNN
 from dataset.dataset import ASEDataset
 from tqdm import tqdm
 import time
@@ -36,9 +36,9 @@ def train(args):
     # inter = t2 - t1
     # print(inter)
 
-    train_dataset = ASEDataset(['/data/zzn/xrdsim/train_1/binxrd.db','/data/zzn/xrdsim/train_2/binxrd.db'])
-    val_dataset = ASEDataset(['/data/zzn/xrdsim/val_db/test_binxrd.db'])
-    test_dataset = ASEDataset(['/data/zzn/xrdsim/test_db/binxrd.db'])
+    train_dataset = ASEDataset(['/home/trf/python_work/XRD_Data/xrdsim/train_1/binxrd.db','/home/trf/python_work/XRD_Data/xrdsim/train_2/binxrd.db'])
+    val_dataset = ASEDataset(['/home/trf/python_work/XRD_Data/xrdsim/val_db/test_binxrd.db'])
+    test_dataset = ASEDataset(['/home/trf/python_work/XRD_Data/xrdsim/test_db/binxrd.db'])
 
 
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
@@ -67,7 +67,7 @@ def train(args):
     elif args.model == 'xca':
         model = XCA(args)
     elif args.model == 'IUCrj_CNN':
-        model = IUCrJ_CNNspg.Model(args)
+        model = IUCrJ_CNN.Model(args)
 
     save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_wd{args.weight_decay}'
     if not os.path.exists('./checkpoints'):
@@ -102,8 +102,8 @@ def train(args):
             best_test_microf1=res['micro_f1']
             best_test_macrof1=res['macro_f1']
             best_epoch = epoch
-        # wandb.log({"epoch": epoch, "train_loss": train_loss, "val_loss": val_loss, "val_acc": val_accuracy, 
-        #            "test_loss":test_loss, "test_f1": res['macro_f1'], "test_acc": test_accuracy})
+        wandb.log({"epoch": epoch, "train_loss": train_loss, "val_loss": val_loss, "val_acc": val_accuracy, 
+                   "test_loss":test_loss, "test_f1": res['macro_f1'], "test_acc": test_accuracy})
         early_stopping(val_loss, model, save_path)
         if early_stopping.early_stop:
             print("Early stopping")

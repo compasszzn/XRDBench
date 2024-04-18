@@ -6,7 +6,7 @@ import numpy as np
 import os
 from train import train
 import datetime
-# import wandb
+import wandb
 
 def set_seed(seed=3407):
     os.environ['PYTHONHASHSEED'] = str(seed)
@@ -20,7 +20,7 @@ def set_seed(seed=3407):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--epochs', type=int, default=10,
+    parser.add_argument('--epochs', type=int, default=20,
                         help='number of epochs')
     parser.add_argument('--model', type=str, default="IUCrj_CNN",
                         help='Model name')
@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     # GPU
     parser.add_argument('--use_gpu', type=bool, default=True, help='use gpu')
-    parser.add_argument('--gpu', type=int, default=1, help='gpu')
+    parser.add_argument('--gpu', type=int, default=4, help='gpu')
 
     args = parser.parse_args()
     if args.seed < 0:
@@ -51,13 +51,13 @@ if __name__ == "__main__":
         seed = args.seed
     set_seed(seed)
     nowtime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    # wandb.init(
-    #     # set the wandb project where this run will be logged
-    #     project="XRDBench",
+    wandb.init(
+        # set the wandb project where this run will be logged
+        project="XRDBench",
         
-    #     # track hyperparameters and run metadata
-    #     config=args.__dict__,
-    #     name=nowtime
-    #     )
+        # track hyperparameters and run metadata
+        config=args.__dict__,
+        name=nowtime
+        )
     train(args)
-    # wandb.finish()
+    wandb.finish()
