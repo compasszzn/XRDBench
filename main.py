@@ -31,9 +31,9 @@ if __name__ == "__main__":
     # optimization
     parser.add_argument('--weight_decay', type=float, default=1e-12,
                         help='weight decay')
-    parser.add_argument('--num_workers', type=int, default=2,
+    parser.add_argument('--num_workers', type=int, default=32,
                         help='Num workers in dataloader')
-    parser.add_argument('--batch_size', type=int, default=16,
+    parser.add_argument('--batch_size', type=int, default=100,
                         help='Batch size. Does not scale with number of gpus.')
     parser.add_argument('--lr', type=float, default=3e-5,
                         help='learning rate')
@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     # GPU
     parser.add_argument('--use_gpu', type=bool, default=True, help='use gpu')
-    parser.add_argument('--gpu', type=int, default=0, help='gpu')
+    parser.add_argument('--gpu', type=int, default=1, help='gpu')
 
     args = parser.parse_args()
     if args.seed < 0:

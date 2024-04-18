@@ -36,9 +36,9 @@ def train(args):
     # inter = t2 - t1
     # print(inter)
 
-    train_dataset = ASEDataset(['/home/trf/python_work/XRD_Data/xrdsim/train_1/binxrd.db','/home/trf/python_work/XRD_Data/xrdsim/train_2/binxrd.db'])
-    val_dataset = ASEDataset(['/home/trf/python_work/XRD_Data/xrdsim/val_db/test_binxrd.db'])
-    test_dataset = ASEDataset(['/home/trf/python_work/XRD_Data/xrdsim/test_db/binxrd.db'])
+    train_dataset = ASEDataset(['/data/zzn/xrdsim/train_1/binxrd.db','/data/zzn/xrdsim/train_2/binxrd.db'])
+    val_dataset = ASEDataset(['/data/zzn/xrdsim/val_db/test_binxrd.db'])
+    test_dataset = ASEDataset(['/data/zzn/xrdsim/test_db/binxrd.db'])
 
 
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
@@ -67,7 +67,8 @@ def train(args):
     elif args.model == 'xca':
         model = XCA(args)
     elif args.model == 'IUCrj_CNN':
-        model = IUCrJ_CNNspg.Model()
+        model = IUCrJ_CNNspg.Model(args)
+
     save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_wd{args.weight_decay}'
     if not os.path.exists('./checkpoints'):
         os.mkdir('./checkpoints')
@@ -122,7 +123,7 @@ def run_epoch(model, optimizer, criterion, epoch, loader, device, args, backprop
     res = {'epoch': epoch, 'loss': 0, 'accuracy': 0, 'micro_f1': 0, 'macro_f1': 0 ,'counter': 0}
     all_labels = []
     all_predicted = []
-    for batch_index, data in enumerate(loader):
+    for batch_index, data in enumerate(tqdm(loader)):
         intensity, latt_dis,crysystem_labels,spg_labels = data['intensity'].to(device),data['latt_dis'].to(device), data['crysystem'].to(device), data['spg'].to(device)
         intensity = intensity.unsqueeze(1)
         if args.task=='spg':

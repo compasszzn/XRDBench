@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 class Model(nn.Module):
-    def __init__(self):
+    def __init__(self, args):
         super(Model, self).__init__()
         self.cnn1 = nn.Conv1d(1, 80, kernel_size=100, stride=5, padding=20050)
         self.dropout1 = nn.Dropout(0.3)
