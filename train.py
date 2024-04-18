@@ -101,7 +101,7 @@ def run_epoch(model, optimizer, criterion, epoch, loader, device, args, backprop
     res = {'epoch': epoch, 'loss': 0, 'accuracy': 0, 'micro_f1': 0, 'macro_f1': 0 ,'counter': 0}
     all_labels = []
     all_predicted = []
-    for batch_index, data in enumerate(tqdm(loader)):
+    for batch_index, data in enumerate(loader):
         intensity, latt_dis,crysystem_labels,spg_labels = data['intensity'].to(device),data['latt_dis'].to(device), data['crysystem'].to(device), data['spg'].to(device)
         intensity = intensity.unsqueeze(1)
         if args.task=='spg':
