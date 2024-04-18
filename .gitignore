@@ -7,5 +7,3 @@ __pycache__/
 checkpoints/
 outs/
 
-sh/
-log_all/
