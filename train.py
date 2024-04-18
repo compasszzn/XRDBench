@@ -101,8 +101,8 @@ def train(args):
             best_test_microf1=res['micro_f1']
             best_test_macrof1=res['macro_f1']
             best_epoch = epoch
-        wandb.log({"epoch": epoch, "train_loss": train_loss, "val_loss": val_loss, "val_acc": val_accuracy, 
-                   "test_loss":test_loss, "test_f1": res['macro_f1'], "test_acc": test_accuracy})
+        # wandb.log({"epoch": epoch, "train_loss": train_loss, "val_loss": val_loss, "val_acc": val_accuracy, 
+        #            "test_loss":test_loss, "test_f1": res['macro_f1'], "test_acc": test_accuracy})
         early_stopping(val_loss, model, save_path)
         if early_stopping.early_stop:
             print("Early stopping")
