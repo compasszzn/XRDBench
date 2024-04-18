@@ -6,3 +6,6 @@ __pycache__/
 # checkpoints
 checkpoints/
 outs/
+
+sh/
+log_all/
