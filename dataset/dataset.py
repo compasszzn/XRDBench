@@ -5,6 +5,7 @@ import ase.db
 class ASEDataset(Dataset):
     def __init__(self, db_paths):
         self.db_paths = db_paths
+        print(db_paths)
         self.dbs = [ase.db.connect(db_path) for db_path in db_paths]
         print("Loaded data from:", db_paths)
 

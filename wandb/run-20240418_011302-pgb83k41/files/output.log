@@ -1,0 +1,22 @@
+['/home/trf/python_work/XRD_Data/xrdsim/train_1/binxrd.db', '/home/trf/python_work/XRD_Data/xrdsim/train_2/binxrd.db']
+Loaded data from: ['/home/trf/python_work/XRD_Data/xrdsim/train_1/binxrd.db', '/home/trf/python_work/XRD_Data/xrdsim/train_2/binxrd.db']
+['/home/trf/python_work/XRD_Data/xrdsim/val_db/test_binxrd.db']
+Loaded data from: ['/home/trf/python_work/XRD_Data/xrdsim/val_db/test_binxrd.db']
+['/home/trf/python_work/XRD_Data/xrdsim/test_db/binxrd.db']
+Loaded data from: ['/home/trf/python_work/XRD_Data/xrdsim/test_db/binxrd.db']
+Traceback (most recent call last):
+  File "/home/trf/python_work/XRDBench/main.py", line 62, in <module>
+    train(args)
+  File "/home/trf/python_work/XRDBench/train.py", line 56, in train
+    model = model.to(device)
+  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 989, in to
+    return self._apply(convert)
+  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 641, in _apply
+    module._apply(fn)
+  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 641, in _apply
+    module._apply(fn)
+  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 664, in _apply
+    param_applied = fn(param)
+  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 987, in convert
+    return t.to(device, dtype if t.is_floating_point() or t.is_complex() else None, non_blocking)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 3.43 GiB (GPU 2; 23.64 GiB total capacity; 1.86 MiB already allocated; 148.12 MiB free; 22.00 MiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
