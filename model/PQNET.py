@@ -2,9 +2,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 ## A deep convolutional neural network for real-time full profile analysis of big powder diffraction data
-class PQNET(nn.Module):
-    def __init__(self,task):
-        super(PQNET, self).__init__()
+class Model(nn.Module):
+    def __init__(self,args):
+        super(Model, self).__init__()
         self.conv1 = nn.Conv1d(1, 128, kernel_size=35, stride=1,padding=17)
         self.conv2 = nn.Conv1d(128, 128, kernel_size=35, stride=1, padding=17)
         self.conv3 = nn.Conv1d(128, 128, kernel_size=35, stride=1, padding=17)
@@ -15,9 +15,9 @@ class PQNET(nn.Module):
         self.pool1 = nn.MaxPool1d(kernel_size=2, stride=2)
         self.fcl1 = nn.Linear(5504,500)
         self.fcl2 = nn.Linear(500,250)
-        if task=='spg':
+        if args.task=='spg':
             self.fcl3 = nn.Linear(250,230)
-        elif task=="crysystem":
+        elif args.task=="crysystem":
             self.fcl3 = nn.Linear(250,7)
         self.flatten = nn.Flatten()
         self.dropout = nn.Dropout(0.1)

@@ -2,9 +2,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-class XCA(nn.Module):
-    def __init__(self,task):
-        super(XCA, self).__init__()
+class Model(nn.Module):
+    def __init__(self,args):
+        super(Model, self).__init__()
 
         # Define Convolutional Layers
         self.conv = nn.Sequential(
@@ -20,11 +20,11 @@ class XCA(nn.Module):
         )
         self.dropout = nn.Dropout(0.4)
         # Define Dense Layers
-        if task=='spg':
+        if args.task=='spg':
             self.fc = nn.Sequential(
                 nn.Linear(1740, 230)
             )
-        elif task=="crysystem":
+        elif args.task=="crysystem":
             self.fc = nn.Sequential(
                 nn.Linear(1740, 7)
             )

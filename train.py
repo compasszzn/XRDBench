@@ -4,14 +4,14 @@ import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 import torch.nn.functional as F
 from model.fcn import FCN
-from model.cnn2 import CNN2
-from model.cnn3 import CNN3
-from model.cnn import CNN
-from model.pqnet import PQNET
-from model.icsd import ICSD
-from model.mp import MP
-from model.xca import XCA
-from model.autoanalyzer import AUTOANALYZER
+from model import MIC_CNN2
+from model import MIC_CNN3 
+from model import ICNN
+from model import PQNET
+from model import ICSD
+from model import MP
+from model import AutoAnalyzer
+from model import XCA
 from model import IUCrJ_CNNspg
 from dataset.dataset import ASEDataset
 from tqdm import tqdm
@@ -51,21 +51,21 @@ def train(args):
     # if args.model == 'fcn':
     #     model = FCN(drop_rate=0.2, drop_rate_2=0.4,task=args.task)
     if args.model == 'cnn2':
-        model = CNN2(args)
+        model = MIC_CNN2.Model(args)
     elif args.model == 'cnn3':
-        model = CNN3(args)
-    elif args.model == 'cnn':
-        model = CNN(args)
+        model = MIC_CNN3.Model(args)
+    elif args.model == 'icnn':
+        model = ICNN.Model(args)
     elif args.model == 'pqnet':
-        model = PQNET(args)
+        model = PQNET.Model(args)
     elif args.model == 'icsd':
-        model = ICSD(args)
+        model = ICSD.Model(args)
     elif args.model == 'mp':
-        model = MP(args)
+        model = MP.Model(args)
     elif args.model == 'autoanalyzer':
-        model = AUTOANALYZER(dropout_rate=0.7,task=args.task)
+        model = AutoAnalyzer.Model(0.7,args)
     elif args.model == 'xca':
-        model = XCA(args)
+        model = XCA.Model(args)
     elif args.model == 'IUCrj_CNN':
         model = IUCrJ_CNNspg.Model(args)
 
@@ -108,8 +108,8 @@ def train(args):
         if early_stopping.early_stop:
             print("Early stopping")
             break
-    wandb.log({"epoch": epoch+1, "train_loss": train_loss, "val_loss": best_val_loss, "val_acc": best_val_accuracy, 
-                   "test_loss":best_test_loss, "test_f1": best_test_macrof1, "test_acc": best_test_accuracy})   
+    # wandb.log({"epoch": epoch+1, "train_loss": train_loss, "val_loss": best_val_loss, "val_acc": best_val_accuracy, 
+    #                "test_loss":best_test_loss, "test_f1": best_test_macrof1, "test_acc": best_test_accuracy})   
     print("*** Best Val Loss: %.5f \t Best Test Loss: %.5f \t Best Test Accuracy: %.5f \t Best Micro-F1: %.5f \t Best Macro-F1: %.5f\t Best epoch %d" %
                 (best_val_loss, best_test_loss, best_test_accuracy,best_test_microf1,best_test_macrof1, best_epoch))
 
@@ -123,7 +123,7 @@ def run_epoch(model, optimizer, criterion, epoch, loader, device, args, backprop
     res = {'epoch': epoch, 'loss': 0, 'accuracy': 0, 'micro_f1': 0, 'macro_f1': 0 ,'counter': 0}
     all_labels = []
     all_predicted = []
-    for batch_index, data in enumerate(tqdm(loader)):
+    for batch_index, data in enumerate(loader):
         intensity, latt_dis,crysystem_labels,spg_labels = data['intensity'].to(device),data['latt_dis'].to(device), data['crysystem'].to(device), data['spg'].to(device)
         intensity = intensity.unsqueeze(1)
         if args.task=='spg':

@@ -3,10 +3,10 @@ import torch.nn as nn
 import torch.optim as optim
 import numpy as np
 import torch.nn.functional as F
-
-class AUTOANALYZER(nn.Module):
-    def __init__(self, dropout_rate,task):
-        super(AUTOANALYZER, self).__init__()
+# Probabilistic Deep Learning Approach to Automate the Interpretation of Multi-phase Diffraction Spectra
+class Model(nn.Module):
+    def __init__(self, dropout_rate,args):
+        super(Model, self).__init__()
         self.conv_layers = nn.Sequential(
             nn.Conv1d(in_channels=1, out_channels=64, kernel_size=35, stride=1, padding=17),
             nn.ReLU(),
@@ -29,7 +29,7 @@ class AUTOANALYZER(nn.Module):
         )
         self.flatten = nn.Flatten()
         self.dropout = nn.Dropout(dropout_rate)
-        if task=='spg':
+        if args.task=='spg':
             self.dense_layers = nn.Sequential(
                 nn.Linear(4544, 1200),
                 nn.ReLU(),
@@ -38,7 +38,7 @@ class AUTOANALYZER(nn.Module):
                 nn.Linear(1200, 230),
                 nn.Softmax(dim=1)
             )
-        elif task=='crysystem':
+        elif args.task=='crysystem':
             self.dense_layers = nn.Sequential(
                 nn.Linear(4544, 1200),
                 nn.ReLU(),

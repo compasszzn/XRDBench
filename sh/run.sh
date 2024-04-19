@@ -3,7 +3,7 @@
 # 定义参数
 
 
-models=('cnn2' 'cnn3' 'cnn' 'pqnet' 'icsd' 'mp' 'autoanalyzer' 'xca')
+models=('cnn2' 'cnn3' 'icnn' 'pqnet' 'icsd' 'mp' 'autoanalyzer' 'xca')
 tasks=('spg' 'crysystem')
 
 

@@ -3,9 +3,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 ## Rapid Identification of X-ray Diffraction Patterns Based on Very Limited Data by interpretable Convolutional Neural Networks.
 ##MOF
-class CNN(nn.Module):
-    def __init__(self,task):
-        super(CNN, self).__init__()
+class Model(nn.Module):
+    def __init__(self,args):
+        super(Model, self).__init__()
         self.conv_layers = nn.Sequential(
             nn.Conv1d(in_channels=1, out_channels=6, kernel_size=5, stride=1),
             nn.ReLU(),
@@ -34,7 +34,7 @@ class CNN(nn.Module):
             nn.Dropout(0.2)
         )
         self.flatten = nn.Flatten()
-        if task=='spg':
+        if args.task=='spg':
             self.fc_layers = nn.Sequential(
                 nn.Linear(8512, 120),
                 nn.ReLU(),
@@ -43,7 +43,7 @@ class CNN(nn.Module):
                 nn.Linear(84, 230),
                 nn.Softmax(dim=1)
             )
-        elif task=='crysystem':
+        elif args.task=='crysystem':
             self.fc_layers = nn.Sequential(
                 nn.Linear(8512, 120),
                 nn.ReLU(),
