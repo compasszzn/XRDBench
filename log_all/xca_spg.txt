@@ -1,0 +1,47 @@
+['/data/zzn/xrdsim/train_1/binxrd.db', '/data/zzn/xrdsim/train_2/binxrd.db']
+Loaded data from: ['/data/zzn/xrdsim/train_1/binxrd.db', '/data/zzn/xrdsim/train_2/binxrd.db']
+['/data/zzn/xrdsim/val_db/test_binxrd.db']
+Loaded data from: ['/data/zzn/xrdsim/val_db/test_binxrd.db']
+['/data/zzn/xrdsim/test_db/binxrd.db']
+Loaded data from: ['/data/zzn/xrdsim/test_db/binxrd.db']
+  epoch 0 avg loss: 5.20804
+==>  epoch 0 avg loss: 5.20449
+==>  epoch 0 avg loss: 5.20449
+Validation loss decreased (inf --> 5.204491).  Saving model ...
+  epoch 1 avg loss: 5.20449
+==>  epoch 1 avg loss: 5.20449
+==>  epoch 1 avg loss: 5.20449
+Validation loss decreased (5.204491 --> 5.204491).  Saving model ...
+  epoch 2 avg loss: 5.20449
+==>  epoch 2 avg loss: 5.20449
+==>  epoch 2 avg loss: 5.20449
+EarlyStopping counter: 1 out of 5
+  epoch 3 avg loss: 5.20449
+==>  epoch 3 avg loss: 5.20449
+==>  epoch 3 avg loss: 5.20449
+EarlyStopping counter: 2 out of 5
+  epoch 4 avg loss: 5.20449
+==>  epoch 4 avg loss: 5.20449
+==>  epoch 4 avg loss: 5.20449
+EarlyStopping counter: 3 out of 5
+  epoch 5 avg loss: 5.20449
+==>  epoch 5 avg loss: 5.20449
+==>  epoch 5 avg loss: 5.20449
+Validation loss decreased (5.204491 --> 5.204491).  Saving model ...
+  epoch 6 avg loss: 5.20449
+==>  epoch 6 avg loss: 5.20449
+==>  epoch 6 avg loss: 5.20449
+EarlyStopping counter: 1 out of 5
+  epoch 7 avg loss: 5.20449
+==>  epoch 7 avg loss: 5.20449
+==>  epoch 7 avg loss: 5.20449
+EarlyStopping counter: 2 out of 5
+  epoch 8 avg loss: 5.20449
+==>  epoch 8 avg loss: 5.20449
+==>  epoch 8 avg loss: 5.20449
+EarlyStopping counter: 3 out of 5
+  epoch 9 avg loss: 5.20449
+==>  epoch 9 avg loss: 5.20449
+==>  epoch 9 avg loss: 5.20449
+Validation loss decreased (5.204491 --> 5.204491).  Saving model ...
+*** Best Val Loss: 5.20449 	 Best Test Loss: 5.20449 	 Best Test Accuracy: 0.24103 	 Best Micro-F1: 0.24103 	 Best Macro-F1: 0.00207	 Best epoch 9

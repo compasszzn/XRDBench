@@ -16,7 +16,7 @@ from model import IUCrJ_CNNspg
 from dataset.dataset import ASEDataset
 from tqdm import tqdm
 import time
-from sklearn.metrics import f1_score
+from sklearn.metrics import f1_score,precision_score,recall_score,accuracy_score
 import os
 from utils.tools import EarlyStopping
 import json
@@ -102,8 +102,10 @@ def train(args):
             best_test_microf1=res['micro_f1']
             best_test_macrof1=res['macro_f1']
             best_epoch = epoch
-        # wandb.log({"epoch": epoch, "train_loss": train_loss, "val_loss": val_loss, "val_acc": val_accuracy, 
-        #            "test_loss":test_loss, "test_f1": res['macro_f1'], "test_acc": test_accuracy})
+        wandb.log({"epoch": epoch+1, "train_loss": train_loss, "val_loss": val_loss, "val_acc": val_accuracy, 
+                   "test_loss":test_loss, "macro_f1": res['macro_f1'],
+                   "macro_precision":res['macro_precision'],
+                   "macro_recall":res['macro_recall'],"test_acc": test_accuracy})
         early_stopping(val_loss, model, save_path)
         if early_stopping.early_stop:
             print("Early stopping")
@@ -120,10 +122,10 @@ def run_epoch(model, optimizer, criterion, epoch, loader, device, args, backprop
         model.train()
     else:
         model.eval()
-    res = {'epoch': epoch, 'loss': 0, 'accuracy': 0, 'micro_f1': 0, 'macro_f1': 0 ,'counter': 0}
+    res = {'epoch': epoch, 'loss': 0, 'accuracy': 0, 'micro_f1': 0, 'macro_f1': 0 ,'counter': 0,'micro_precision': 0,'macro_precision':0,'micro_recall':0,"macro_recall":0}
     all_labels = []
     all_predicted = []
-    for batch_index, data in enumerate(loader):
+    for batch_index, data in enumerate(tqdm(loader)):
         intensity, latt_dis,crysystem_labels,spg_labels = data['intensity'].to(device),data['latt_dis'].to(device), data['crysystem'].to(device), data['spg'].to(device)
         intensity = intensity.unsqueeze(1)
         if args.task=='spg':
@@ -142,23 +144,30 @@ def run_epoch(model, optimizer, criterion, epoch, loader, device, args, backprop
             loss = criterion(outputs, labels)
 
         _, predicted = torch.max(outputs, 1)
-        accuracy = (predicted == labels).sum().item()
-        res['accuracy'] += accuracy
+        # accuracy = (predicted == labels).sum().item()
+        # res['accuracy'] += accuracy
         res['loss'] += loss.item()*batch_size
         res['counter'] += batch_size
 
         all_labels.extend(labels.cpu().numpy())
         all_predicted.extend(predicted.cpu().numpy())
 
+    accuracy = accuracy_score(all_labels, all_predicted)
     micro_f1 = f1_score(all_labels, all_predicted, average='micro')
     macro_f1 = f1_score(all_labels, all_predicted, average='macro')
+    macro_precision = precision_score(all_labels, all_predicted, average='macro')
+    macro_recall = recall_score(all_labels, all_predicted, average='macro')
 
+    res['accuracy'] = accuracy
     res['micro_f1'] = micro_f1
     res['macro_f1'] = macro_f1
+    res['macro_precision'] = macro_precision
+    res['macro_recall'] = macro_recall   
+
     if not backprop:
         prefix = "==> "
     else:
         prefix = " "
     print('%s epoch %d avg loss: %.5f' % (prefix, epoch, res['loss'] / res['counter']))
 
-    return res['loss'] / res['counter'] , res['accuracy']/res['counter'], res
+    return res['loss'] / res['counter'] , res['accuracy'], res

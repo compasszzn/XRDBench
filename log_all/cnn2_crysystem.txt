@@ -1,0 +1,47 @@
+['/data/zzn/xrdsim/train_1/binxrd.db', '/data/zzn/xrdsim/train_2/binxrd.db']
+Loaded data from: ['/data/zzn/xrdsim/train_1/binxrd.db', '/data/zzn/xrdsim/train_2/binxrd.db']
+['/data/zzn/xrdsim/val_db/test_binxrd.db']
+Loaded data from: ['/data/zzn/xrdsim/val_db/test_binxrd.db']
+['/data/zzn/xrdsim/test_db/binxrd.db']
+Loaded data from: ['/data/zzn/xrdsim/test_db/binxrd.db']
+  epoch 0 avg loss: 1.62120
+==>  epoch 0 avg loss: 1.58942
+==>  epoch 0 avg loss: 1.58642
+Validation loss decreased (inf --> 1.589418).  Saving model ...
+  epoch 1 avg loss: 1.56583
+==>  epoch 1 avg loss: 1.55238
+==>  epoch 1 avg loss: 1.55026
+Validation loss decreased (1.589418 --> 1.552381).  Saving model ...
+  epoch 2 avg loss: 1.53180
+==>  epoch 2 avg loss: 1.53035
+==>  epoch 2 avg loss: 1.52651
+Validation loss decreased (1.552381 --> 1.530347).  Saving model ...
+  epoch 3 avg loss: 1.50476
+==>  epoch 3 avg loss: 1.51248
+==>  epoch 3 avg loss: 1.51033
+Validation loss decreased (1.530347 --> 1.512483).  Saving model ...
+  epoch 4 avg loss: 1.48223
+==>  epoch 4 avg loss: 1.50124
+==>  epoch 4 avg loss: 1.49733
+Validation loss decreased (1.512483 --> 1.501237).  Saving model ...
+  epoch 5 avg loss: 1.46285
+==>  epoch 5 avg loss: 1.49254
+==>  epoch 5 avg loss: 1.48798
+Validation loss decreased (1.501237 --> 1.492541).  Saving model ...
+  epoch 6 avg loss: 1.44637
+==>  epoch 6 avg loss: 1.48223
+==>  epoch 6 avg loss: 1.47771
+Validation loss decreased (1.492541 --> 1.482226).  Saving model ...
+  epoch 7 avg loss: 1.43235
+==>  epoch 7 avg loss: 1.47789
+==>  epoch 7 avg loss: 1.47354
+Validation loss decreased (1.482226 --> 1.477894).  Saving model ...
+  epoch 8 avg loss: 1.42040
+==>  epoch 8 avg loss: 1.47136
+==>  epoch 8 avg loss: 1.46671
+Validation loss decreased (1.477894 --> 1.471363).  Saving model ...
+  epoch 9 avg loss: 1.41040
+==>  epoch 9 avg loss: 1.46601
+==>  epoch 9 avg loss: 1.45990
+Validation loss decreased (1.471363 --> 1.466015).  Saving model ...
+*** Best Val Loss: 1.46601 	 Best Test Loss: 1.45990 	 Best Test Accuracy: 0.70424 	 Best Micro-F1: 0.70424 	 Best Macro-F1: 0.42570	 Best epoch 9

@@ -1,0 +1,43 @@
+['/data/zzn/xrdsim/train_1/binxrd.db', '/data/zzn/xrdsim/train_2/binxrd.db']
+Loaded data from: ['/data/zzn/xrdsim/train_1/binxrd.db', '/data/zzn/xrdsim/train_2/binxrd.db']
+['/data/zzn/xrdsim/val_db/test_binxrd.db']
+Loaded data from: ['/data/zzn/xrdsim/val_db/test_binxrd.db']
+['/data/zzn/xrdsim/test_db/binxrd.db']
+Loaded data from: ['/data/zzn/xrdsim/test_db/binxrd.db']
+
+
+
+
+
+
+
+
+
+
+
+
+  3%|▎         | 322/11957 [00:35<21:18,  9.10it/s]
+Traceback (most recent call last):
+  File "/home/zinanzheng/project/github/XRDBench/main.py", line 65, in <module>
+    train(args)
+  File "/home/zinanzheng/project/github/XRDBench/train.py", line 94, in train
+    train_loss, train_accuracy,_ = run_epoch(model, optimizer, criterion, epoch, train_loader, device, args)
+  File "/home/zinanzheng/project/github/XRDBench/train.py", line 126, in run_epoch
+    for batch_index, data in enumerate(tqdm(loader)):
+  File "/home/zinanzheng/anaconda3/envs/xrdbench/lib/python3.9/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/home/zinanzheng/anaconda3/envs/xrdbench/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 634, in __next__
+    data = self._next_data()
+  File "/home/zinanzheng/anaconda3/envs/xrdbench/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1329, in _next_data
+    idx, data = self._get_data()
+  File "/home/zinanzheng/anaconda3/envs/xrdbench/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1295, in _get_data
+    success, data = self._try_get_data()
+  File "/home/zinanzheng/anaconda3/envs/xrdbench/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1133, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+  File "/home/zinanzheng/anaconda3/envs/xrdbench/lib/python3.9/multiprocessing/queues.py", line 122, in get
+    return _ForkingPickler.loads(res)
+  File "/home/zinanzheng/anaconda3/envs/xrdbench/lib/python3.9/site-packages/torch/multiprocessing/reductions.py", line 100, in rebuild_tensor
+    t = torch._utils._rebuild_tensor(storage, storage_offset, size, stride)
+  File "/home/zinanzheng/anaconda3/envs/xrdbench/lib/python3.9/site-packages/torch/_utils.py", line 147, in _rebuild_tensor
+    t = torch.tensor([], dtype=storage.dtype, device=storage._untyped_storage.device)
+KeyboardInterrupt
