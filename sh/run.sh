@@ -3,16 +3,16 @@
 # 定义参数
 
 
-# models=('cnn2' 'cnn3' 'icnn' 'pqnet' 'icsd' 'mp' 'autoanalyzer' 'xca')
-models=('cnn2')
-tasks=('spg')
+models=('cnn2' 'cnn3' 'icnn' 'pqnet' 'icsd' 'mp' 'autoanalyzer' 'xca')
+# models=('cnn2')
+tasks=('crysystem')
 
 
 for task in "${tasks[@]}"; do
   for model in "${models[@]}"; do
     for i in {1..1}; do
         # 构建日志文件名
-        log_file="/home/zinanzheng/project/github/XRDBench/log_all/${model}_${task}_new.txt"
+        log_file="/home/zinanzheng/project/github/XRDBench/log_new/${model}_${task}_new.txt"
         
         # 执行 Python 脚本，并将输出追加到日志文件
         python main.py --model "$model" --task "$task"  >> "$log_file" 2>&1

@@ -19,7 +19,10 @@ class Model(nn.Module):
         self.flatten = nn.Flatten()
 
     def forward(self, x):
+        ##
         x = F.interpolate(x, size=4501,mode='linear', align_corners=False)
+        # x = F.interpolate(x, size=4409,mode='linear', align_corners=False)
+        # x = torch.cat((x,element),dim=2)
         x = self.pool1(F.leaky_relu(self.conv1(x)))
         x = self.pool2(F.leaky_relu(self.conv2(x)))
         x = self.flatten(x)

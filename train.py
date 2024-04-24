@@ -21,9 +21,12 @@ import os
 from utils.tools import EarlyStopping
 import json
 import wandb
-    
-def train(args):
+import datetime
+import warnings
 
+
+def train(args,test_loss_list, macro_f1_list, macro_precision_list,macro_recall_list,test_accuracy_list):
+    warnings.filterwarnings("ignore")
     if args.use_gpu:
         device = torch.device('cuda:{}'.format(args.gpu))
     else:
@@ -36,20 +39,15 @@ def train(args):
     # inter = t2 - t1
     # print(inter)
 
-    train_dataset = ASEDataset(['/data/zzn/xrdsim/train_1/binxrd.db','/data/zzn/xrdsim/train_2/binxrd.db'])
-    val_dataset = ASEDataset(['/data/zzn/xrdsim/val_db/test_binxrd.db'])
-    test_dataset = ASEDataset(['/data/zzn/xrdsim/test_db/binxrd.db'])
+    train_dataset = ASEDataset(['/data/zzn/xrdsim/train_1/binxrd.db','/data/zzn/xrdsim/train_2/binxrd.db'],False)
+    val_dataset = ASEDataset(['/data/zzn/xrdsim/val_db/test_binxrd.db'],False)
+    test_dataset = ASEDataset(['/data/zzn/xrdsim/test_db/binxrd.db'],False)
 
 
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
     val_loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers,drop_last=False)
     test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers,drop_last=False)
-    # for batch in test_loader:
-    #     print(batch['latt_dis'], batch['intensity'], batch['spg'], batch['crysystem'], batch['split'])
 
-    # Initialize the model
-    # if args.model == 'fcn':
-    #     model = FCN(drop_rate=0.2, drop_rate_2=0.4,task=args.task)
     if args.model == 'cnn2':
         model = MIC_CNN2.Model(args)
     elif args.model == 'cnn3':
@@ -68,10 +66,13 @@ def train(args):
         model = XCA.Model(args)
     elif args.model == 'IUCrj_CNN':
         model = IUCrJ_CNNspg.Model(args)
-
-    save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_wd{args.weight_decay}'
-    if not os.path.exists('./checkpoints'):
-        os.mkdir('./checkpoints')
+    nowtime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    # save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_wd{args.weight_decay}_{nowtime}'
+    # if not os.path.exists('./checkpoints'):
+    #     os.mkdir('./checkpoints')
+    save_path = f'/data/zzn/checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_wd{args.weight_decay}_{nowtime}'
+    if not os.path.exists('/data/zzn/checkpoints'):
+        os.mkdir('/data/zzn/checkpoints')
     os.makedirs(save_path, exist_ok=True)
     with open(save_path+'/args.json', 'w') as f:
         json.dump(args.__dict__, f)
@@ -82,36 +83,40 @@ def train(args):
     optimizer = optim.Adam(model.parameters(), lr=args.lr)
     # Training loop
     best_val_loss = 1e8
-    best_val_accuracy = 0
     best_test_loss = 1e8
     best_epoch = 0
     best_test_accuracy = 0
     best_test_microf1=0
     best_test_macrof1=0
-    test_interval = 10
     early_stopping = EarlyStopping(patience=args.patience, verbose=True)
     for epoch in range(args.epochs):
-        train_loss, train_accuracy,_ = run_epoch(model, optimizer, criterion, epoch, train_loader, device, args)
-        val_loss, val_accuracy,_ = run_epoch(model, optimizer, criterion, epoch, val_loader,device, args, backprop=False)
-        test_loss, test_accuracy,res = run_epoch(model, optimizer, criterion, epoch, test_loader,device, args, backprop=False)
+        train_loss, _ = run_epoch(model, optimizer, criterion, epoch, train_loader, device, args)
+        val_loss, _ = run_epoch(model, optimizer, criterion, epoch, val_loader,device, args, backprop=False)
+        test_loss, res = run_epoch(model, optimizer, criterion, epoch, test_loader,device, args, backprop=False)
         if val_loss < best_val_loss:
             best_val_loss = val_loss
-            best_val_accuracy = val_accuracy
             best_test_loss = test_loss
-            best_test_accuracy = test_accuracy
+            best_test_accuracy = res['accuracy']
             best_test_microf1=res['micro_f1']
             best_test_macrof1=res['macro_f1']
             best_epoch = epoch
-        wandb.log({"epoch": epoch+1, "train_loss": train_loss, "val_loss": val_loss, "val_acc": val_accuracy, 
+        wandb.log({"epoch": epoch+1, "train_loss": train_loss, "val_loss": val_loss, 
                    "test_loss":test_loss, "macro_f1": res['macro_f1'],
                    "macro_precision":res['macro_precision'],
-                   "macro_recall":res['macro_recall'],"test_acc": test_accuracy})
+                   "macro_recall":res['macro_recall'],"test_acc": res['accuracy']})
         early_stopping(val_loss, model, save_path)
         if early_stopping.early_stop:
             print("Early stopping")
             break
     # wandb.log({"epoch": epoch+1, "train_loss": train_loss, "val_loss": best_val_loss, "val_acc": best_val_accuracy, 
-    #                "test_loss":best_test_loss, "test_f1": best_test_macrof1, "test_acc": best_test_accuracy})   
+    #                "test_loss":best_test_loss, "test_f1": best_test_macrof1, "test_acc": best_test_accuracy})
+    test_loss_list.append(test_loss)
+    macro_f1_list.append(res['macro_f1'])
+    macro_precision_list.append(res['macro_precision'])
+    macro_recall_list.append(res['macro_recall'])
+    test_accuracy_list.append(res['accuracy'])
+
+
     print("*** Best Val Loss: %.5f \t Best Test Loss: %.5f \t Best Test Accuracy: %.5f \t Best Micro-F1: %.5f \t Best Macro-F1: %.5f\t Best epoch %d" %
                 (best_val_loss, best_test_loss, best_test_accuracy,best_test_microf1,best_test_macrof1, best_epoch))
 
@@ -126,8 +131,9 @@ def run_epoch(model, optimizer, criterion, epoch, loader, device, args, backprop
     all_labels = []
     all_predicted = []
     for batch_index, data in enumerate(tqdm(loader)):
-        intensity, latt_dis,crysystem_labels,spg_labels = data['intensity'].to(device),data['latt_dis'].to(device), data['crysystem'].to(device), data['spg'].to(device)
+        intensity,crysystem_labels,spg_labels,element = data['intensity'].to(device), data['crysystem'].to(device), data['spg'].to(device), data['element'].to(device)
         intensity = intensity.unsqueeze(1)
+        element = element.unsqueeze(1)
         if args.task=='spg':
             labels=spg_labels-1
         elif args.task=='crysystem':
@@ -170,4 +176,4 @@ def run_epoch(model, optimizer, criterion, epoch, loader, device, args, backprop
         prefix = " "
     print('%s epoch %d avg loss: %.5f' % (prefix, epoch, res['loss'] / res['counter']))
 
-    return res['loss'] / res['counter'] , res['accuracy'], res
+    return res['loss'] / res['counter'] , res
