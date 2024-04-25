@@ -32,14 +32,12 @@ if __name__ == "__main__":
     parser.add_argument('--task', type=str, default="crysystem")
     
     # optimization
-    parser.add_argument('--weight_decay', type=float, default=1e-12,
-                        help='weight decay')
     parser.add_argument('--num_workers', type=int, default=32,
                         help='Num workers in dataloader')
     parser.add_argument('--trials', type=int, default=2)
     parser.add_argument('--batch_size', type=int, default=100,
                         help='Batch size. Does not scale with number of gpus.')
-    parser.add_argument('--lr', type=float, default=2e-4,
+    parser.add_argument('--lr', type=float, default=1e-4,
                         help='learning rate')
     parser.add_argument('--patience', type=int, default=3,
                         help='patience for early stopping')

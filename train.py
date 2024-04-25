@@ -67,10 +67,10 @@ def train(args,test_loss_list, macro_f1_list, macro_precision_list,macro_recall_
     elif args.model == 'IUCrj_CNN':
         model = IUCrJ_CNNspg.Model(args)
     nowtime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    # save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_wd{args.weight_decay}_{nowtime}'
+    # save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}'
     # if not os.path.exists('./checkpoints'):
     #     os.mkdir('./checkpoints')
-    save_path = f'/data/zzn/checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_wd{args.weight_decay}_{nowtime}'
+    save_path = f'/data/zzn/checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}'
     if not os.path.exists('/data/zzn/checkpoints'):
         os.mkdir('/data/zzn/checkpoints')
     os.makedirs(save_path, exist_ok=True)
