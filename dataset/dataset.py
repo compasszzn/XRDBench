@@ -5,7 +5,7 @@ import json
 
 class ASEDataset(Dataset):
     def __init__(self, db_paths,encode_element):
-        with open('/home/zinanzheng/project/github/XRDBench/element/element/CGCNN_atom_emb.json' , 'r') as file:
+        with open('./CGCNN_atom_emb.json' , 'r') as file:
             self.cgcnn_emb = json.load(file)
         self.db_paths = db_paths
         self.encode_element = encode_element
