@@ -24,3 +24,10 @@ config: {'epochs': 100, 'model': 'IUCrj_CNN', 'seed': 2023, 'task': 'spg', 'weig
 2024-04-18 15:30:32,714 INFO    MainThread:1837651 [wandb_run.py:_redirect():2119] Wrapping output streams.
 2024-04-18 15:30:32,715 INFO    MainThread:1837651 [wandb_run.py:_redirect():2144] Redirects installed.
 2024-04-18 15:30:32,716 INFO    MainThread:1837651 [wandb_init.py:init():840] run started, returning control to user process
+2024-04-19 09:40:31,382 INFO    MainThread:1837651 [wandb_run.py:_finish():1934] finishing run hkustgz-batteryinformatics/XRDBench/7xcz9rxe
+2024-04-19 09:40:31,382 INFO    MainThread:1837651 [wandb_run.py:_atexit_cleanup():2168] got exitcode: 0
+2024-04-19 09:40:31,383 INFO    MainThread:1837651 [wandb_run.py:_restore():2151] restore
+2024-04-19 09:40:31,383 INFO    MainThread:1837651 [wandb_run.py:_restore():2157] restore done
+2024-04-19 09:41:26,150 INFO    MainThread:1837651 [wandb_run.py:_footer_history_summary_info():3557] rendering history
+2024-04-19 09:41:26,151 INFO    MainThread:1837651 [wandb_run.py:_footer_history_summary_info():3589] rendering summary
+2024-04-19 09:41:26,157 INFO    MainThread:1837651 [wandb_run.py:_footer_sync_info():3516] logging synced files

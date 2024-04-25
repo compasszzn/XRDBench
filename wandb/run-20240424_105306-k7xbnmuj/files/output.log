@@ -1,0 +1,19 @@
+['/home/trf/python_work/XRD_Data/xrdsim/train_1/binxrd.db', '/home/trf/python_work/XRD_Data/xrdsim/train_2/binxrd.db']
+Loaded data from: ['/home/trf/python_work/XRD_Data/xrdsim/train_1/binxrd.db', '/home/trf/python_work/XRD_Data/xrdsim/train_2/binxrd.db']
+['/home/trf/python_work/XRD_Data/xrdsim/val_db/test_binxrd.db']
+Loaded data from: ['/home/trf/python_work/XRD_Data/xrdsim/val_db/test_binxrd.db']
+['/home/trf/python_work/XRD_Data/xrdsim/test_db/binxrd.db']
+Loaded data from: ['/home/trf/python_work/XRD_Data/xrdsim/test_db/binxrd.db']
+  0%|          | 0/18683 [00:19<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/trf/python_work/XRDBench/main.py", line 64, in <module>
+    train(args)
+  File "/home/trf/python_work/XRDBench/train.py", line 98, in train
+    train_loss, train_accuracy,_ = run_epoch(model, optimizer, criterion, epoch, train_loader, device, args)
+  File "/home/trf/python_work/XRDBench/train.py", line 140, in run_epoch
+    outputs = model(intensity)
+  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/trf/python_work/XRDBench/model/CPICANN.py", line 83, in forward
+    x = torch.cat((cls_token, x), dim=0)
+RuntimeError: Sizes of tensors must match except in dimension 0. Expected size 64 but got size 128 for tensor number 1 in the list.

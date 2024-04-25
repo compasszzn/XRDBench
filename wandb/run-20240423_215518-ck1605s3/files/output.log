@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/home/trf/python_work/XRDBench/main.py", line 62, in <module>
+    train(args)
+  File "/home/trf/python_work/XRDBench/train.py", line 72, in train
+    model = NPCNN.Model(args)
+  File "/home/trf/python_work/XRDBench/model/NPCNN.py", line 39, in __init__
+    self.cnn = NoPoolCNN(1)
+  File "/home/trf/python_work/XRDBench/model/NPCNN.py", line 7, in __init__
+    self.CNN = \
+  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1298, in __setattr__
+    raise AttributeError(
+AttributeError: cannot assign module before Module.__init__() call
+['/home/trf/python_work/XRD_Data/xrdsim/train_1/binxrd.db', '/home/trf/python_work/XRD_Data/xrdsim/train_2/binxrd.db']
+Loaded data from: ['/home/trf/python_work/XRD_Data/xrdsim/train_1/binxrd.db', '/home/trf/python_work/XRD_Data/xrdsim/train_2/binxrd.db']
+['/home/trf/python_work/XRD_Data/xrdsim/val_db/test_binxrd.db']
+Loaded data from: ['/home/trf/python_work/XRD_Data/xrdsim/val_db/test_binxrd.db']
+['/home/trf/python_work/XRD_Data/xrdsim/test_db/binxrd.db']
+Loaded data from: ['/home/trf/python_work/XRD_Data/xrdsim/test_db/binxrd.db']

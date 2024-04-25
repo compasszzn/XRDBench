@@ -1,0 +1,65 @@
+['/home/trf/python_work/XRD_Data/xrdsim/train_1/binxrd.db', '/home/trf/python_work/XRD_Data/xrdsim/train_2/binxrd.db']
+Loaded data from: ['/home/trf/python_work/XRD_Data/xrdsim/train_1/binxrd.db', '/home/trf/python_work/XRD_Data/xrdsim/train_2/binxrd.db']
+['/home/trf/python_work/XRD_Data/xrdsim/val_db/test_binxrd.db']
+Loaded data from: ['/home/trf/python_work/XRD_Data/xrdsim/val_db/test_binxrd.db']
+['/home/trf/python_work/XRD_Data/xrdsim/test_db/binxrd.db']
+Loaded data from: ['/home/trf/python_work/XRD_Data/xrdsim/test_db/binxrd.db']
+
+  0%|                                                                               | 1/18683 [00:13<69:26:55, 13.38s/it]
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+torch.Size([1, 64, 128]) torch.Size([141, 64, 128])
+  0%|                                                                               | 26/18683 [00:16<3:18:16,  1.57it/s]
+Traceback (most recent call last):
+  File "/home/trf/python_work/XRDBench/main.py", line 64, in <module>
+    train(args)
+  File "/home/trf/python_work/XRDBench/train.py", line 98, in train
+    train_loss, train_accuracy,_ = run_epoch(model, optimizer, criterion, epoch, train_loader, device, args)
+  File "/home/trf/python_work/XRDBench/train.py", line 140, in run_epoch
+    outputs = model(intensity)
+  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/trf/python_work/XRDBench/model/CPICANN.py", line 77, in forward
+    x = self.conv(x)
+  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/trf/python_work/XRDBench/model/CPICANN.py", line 114, in forward
+    x = self.layer2(x)
+  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/trf/python_work/XRDBench/model/CPICANN.py", line 177, in forward
+    x = self.block2(x)
+  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/trf/python_work/XRDBench/model/CPICANN.py", line 198, in forward
+    x = self.bn1(x)
+  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 313, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 309, in _conv_forward
+    return F.conv1d(input, weight, bias, self.stride,
+KeyboardInterrupt

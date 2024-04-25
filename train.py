@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 import torch.nn.functional as F
-from model.fcn import FCN
+from model.FCN import FCN
 from model.cnn2 import CNN2
 from model.cnn3 import CNN3
 from model.cnn import CNN
@@ -12,13 +12,13 @@ from model.icsd import ICSD
 from model.mp import MP
 from model.xca import XCA
 from model.autoanalyzer import AUTOANALYZER
-from model import IUCrJ_CNN
+from model import IUCrJ_CNN, NPCNN, CPICANN, FCN
 from dataset.dataset import ASEDataset
 from tqdm import tqdm
 import time
 from sklearn.metrics import f1_score
 import os
-from utils.tools import EarlyStopping
+from utils.tools import EarlyStopping, adjust_learning_rate_withWarmup
 import json
 import wandb
     
@@ -68,6 +68,12 @@ def train(args):
         model = XCA(args)
     elif args.model == 'IUCrj_CNN':
         model = IUCrJ_CNN.Model(args)
+    elif args.model == 'NPCNN':
+        model = NPCNN.Model(args)
+    elif args.model == 'CPICANN':
+        model = CPICANN.Model(args)
+    elif args.model == 'FCN':
+        model = FCN.Model(args)
 
     save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_wd{args.weight_decay}'
     if not os.path.exists('./checkpoints'):
@@ -149,6 +155,8 @@ def run_epoch(model, optimizer, criterion, epoch, loader, device, args, backprop
 
         all_labels.extend(labels.cpu().numpy())
         all_predicted.extend(predicted.cpu().numpy())
+        if args.model == 'CPICANN':
+            adjust_learning_rate_withWarmup(optimizer, epoch + batch_index / len(loader), args)
 
     micro_f1 = f1_score(all_labels, all_predicted, average='micro')
     macro_f1 = f1_score(all_labels, all_predicted, average='macro')

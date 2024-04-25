@@ -22,7 +22,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--epochs', type=int, default=20,
                         help='number of epochs')
-    parser.add_argument('--model', type=str, default="IUCrj_CNN",
+    parser.add_argument('--model', type=str, default="FCN",
                         help='Model name')
     parser.add_argument('--seed', type=int, default=2023, metavar='N',
                         help='the rand seed')
@@ -39,6 +39,8 @@ if __name__ == "__main__":
                         help='learning rate')
     parser.add_argument('--patience', type=int, default=5,
                         help='patience for early stopping')
+    parser.add_argument('--warmup-epochs', default=2, type=int, metavar='N',
+                        help='number of warmup epochs')
 
     # GPU
     parser.add_argument('--use_gpu', type=bool, default=True, help='use gpu')
