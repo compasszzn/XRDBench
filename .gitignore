@@ -6,4 +6,5 @@ __pycache__/
 # checkpoints
 checkpoints/
 outs/
-
+log_all/
+wan_db/
