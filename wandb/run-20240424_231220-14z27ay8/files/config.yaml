@@ -1,0 +1,67 @@
+wandb_version: 1
+
+epochs:
+  desc: null
+  value: 50
+model:
+  desc: null
+  value: cnn2
+seed:
+  desc: null
+  value: 2023
+task:
+  desc: null
+  value: crysystem
+weight_decay:
+  desc: null
+  value: 1.0e-12
+num_workers:
+  desc: null
+  value: 32
+trials:
+  desc: null
+  value: 2
+batch_size:
+  desc: null
+  value: 100
+lr:
+  desc: null
+  value: 0.0002
+patience:
+  desc: null
+  value: 3
+use_gpu:
+  desc: null
+  value: true
+gpu:
+  desc: null
+  value: 3
+_wandb:
+  desc: null
+  value:
+    python_version: 3.9.19
+    cli_version: 0.16.6
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1713971540.0
+    t:
+      1:
+      - 1
+      - 5
+      - 53
+      - 55
+      2:
+      - 1
+      - 5
+      - 53
+      - 55
+      3:
+      - 13
+      - 16
+      - 23
+      4: 3.9.19
+      5: 0.16.6
+      8:
+      - 5
+      13: linux-x86_64

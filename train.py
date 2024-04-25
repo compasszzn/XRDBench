@@ -86,7 +86,8 @@ def train(args,test_loss_list, macro_f1_list, macro_precision_list,macro_recall_
     best_test_loss = 1e8
     best_epoch = 0
     best_test_accuracy = 0
-    best_test_microf1=0
+    best_test_precision = 0
+    best_test_recall = 0
     best_test_macrof1=0
     early_stopping = EarlyStopping(patience=args.patience, verbose=True)
     for epoch in range(args.epochs):
@@ -97,28 +98,30 @@ def train(args,test_loss_list, macro_f1_list, macro_precision_list,macro_recall_
             best_val_loss = val_loss
             best_test_loss = test_loss
             best_test_accuracy = res['accuracy']
-            best_test_microf1=res['micro_f1']
+            best_test_precision = res['macro_precision']
+            best_test_recall = res['macro_recall']
             best_test_macrof1=res['macro_f1']
             best_epoch = epoch
         wandb.log({"epoch": epoch+1, "train_loss": train_loss, "val_loss": val_loss, 
-                   "test_loss":test_loss, "macro_f1": res['macro_f1'],
+                   "test_loss":test_loss, "macro_f1":res['macro_f1'],
                    "macro_precision":res['macro_precision'],
                    "macro_recall":res['macro_recall'],"test_acc": res['accuracy']})
         early_stopping(val_loss, model, save_path)
         if early_stopping.early_stop:
             print("Early stopping")
             break
-    # wandb.log({"epoch": epoch+1, "train_loss": train_loss, "val_loss": best_val_loss, "val_acc": best_val_accuracy, 
-    #                "test_loss":best_test_loss, "test_f1": best_test_macrof1, "test_acc": best_test_accuracy})
-    test_loss_list.append(test_loss)
-    macro_f1_list.append(res['macro_f1'])
-    macro_precision_list.append(res['macro_precision'])
-    macro_recall_list.append(res['macro_recall'])
-    test_accuracy_list.append(res['accuracy'])
+    # wandb.log({"epoch": epoch+1, "train_loss": train_loss, "val_loss": best_val_loss, 
+    #                "test_loss":best_test_loss, "test_f1": best_test_macrof1,"test_precision":best_test_precision , 
+    #                "test_recall":best_test_recall ,"test_acc": best_test_accuracy})
+    test_loss_list.append(best_test_loss)
+    macro_f1_list.append(best_test_macrof1)
+    macro_precision_list.append(best_test_precision)
+    macro_recall_list.append(best_test_recall)
+    test_accuracy_list.append(best_test_accuracy)
 
 
-    print("*** Best Val Loss: %.5f \t Best Test Loss: %.5f \t Best Test Accuracy: %.5f \t Best Micro-F1: %.5f \t Best Macro-F1: %.5f\t Best epoch %d" %
-                (best_val_loss, best_test_loss, best_test_accuracy,best_test_microf1,best_test_macrof1, best_epoch))
+    print("*** Best Val Loss: %.5f \t Best Test Loss: %.5f \t Best Test Accuracy: %.5f  \t Best Macro-F1: %.5f\t Best epoch %d" %
+                (best_val_loss, best_test_loss, best_test_accuracy,best_test_macrof1, best_epoch))
 
     return best_test_accuracy
 
@@ -127,7 +130,7 @@ def run_epoch(model, optimizer, criterion, epoch, loader, device, args, backprop
         model.train()
     else:
         model.eval()
-    res = {'epoch': epoch, 'loss': 0, 'accuracy': 0, 'micro_f1': 0, 'macro_f1': 0 ,'counter': 0,'micro_precision': 0,'macro_precision':0,'micro_recall':0,"macro_recall":0}
+    res = {'epoch': epoch, 'loss': 0, 'accuracy': 0, 'macro_f1': 0 ,'counter': 0,'macro_precision':0,"macro_recall":0}
     all_labels = []
     all_predicted = []
     for batch_index, data in enumerate(tqdm(loader)):
@@ -159,13 +162,11 @@ def run_epoch(model, optimizer, criterion, epoch, loader, device, args, backprop
         all_predicted.extend(predicted.cpu().numpy())
 
     accuracy = accuracy_score(all_labels, all_predicted)
-    micro_f1 = f1_score(all_labels, all_predicted, average='micro')
     macro_f1 = f1_score(all_labels, all_predicted, average='macro')
     macro_precision = precision_score(all_labels, all_predicted, average='macro')
     macro_recall = recall_score(all_labels, all_predicted, average='macro')
 
     res['accuracy'] = accuracy
-    res['micro_f1'] = micro_f1
     res['macro_f1'] = macro_f1
     res['macro_precision'] = macro_precision
     res['macro_recall'] = macro_recall   
