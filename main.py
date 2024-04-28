@@ -27,14 +27,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--epochs', type=int, default=50,
                         help='number of epochs')
-    parser.add_argument('--model', type=str, default="cnn2",
+    parser.add_argument('--model', type=str, default="FCN",
                         help='Model name')
-    parser.add_argument('--seed', type=int, default=2024, metavar='N',
+    parser.add_argument('--seed', type=int, default=300, metavar='N',
                         help='the rand seed')
-    parser.add_argument('--task', type=str, default="spg")
+    parser.add_argument('--task', type=str, default="crysystem")
     
     # optimization
-    parser.add_argument('--num_workers', type=int, default=32,
+    parser.add_argument('--num_workers', type=int, default=4,
                         help='Num workers in dataloader')
     parser.add_argument('--batch_size', type=int, default=128,
                         help='Batch size. Does not scale with number of gpus.')
@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
     # GPU
     parser.add_argument('--use_gpu', type=bool, default=True, help='use gpu')
-    parser.add_argument('--gpu', type=int, default=0, help='gpu')
+    parser.add_argument('--gpu', type=int, default=6, help='gpu')
 
     args = parser.parse_args()
     
@@ -64,8 +64,8 @@ if __name__ == "__main__":
     wandb.login()
     wandb.init(
         # set the wandb project where this run will be logged
-        project="XRDBench",
-        
+        project="Official_XRDBench",
+        entity="xrdbench",
         # track hyperparameters and run metadata
         config=args.__dict__,
         name=nowtime

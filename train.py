@@ -39,9 +39,9 @@ def train(args,nowtime):
     # inter = t2 - t1
     # print(inter)
 
-    train_dataset = ASEDataset(['/data/zzn/xrdsim/train_1/binxrd.db','/data/zzn/xrdsim/train_2/binxrd.db'],False)
-    val_dataset = ASEDataset(['/data/zzn/xrdsim/val_db/test_binxrd.db'],False)
-    test_dataset = ASEDataset(['/data/zzn/xrdsim/test_db/binxrd.db'],False)
+    train_dataset = ASEDataset(['/home/trf/python_work/XRD_Data/xrdsim/train_1/binxrd.db','/home/trf/python_work/XRD_Data/xrdsim/train_2/binxrd.db'],False)
+    val_dataset = ASEDataset(['/home/trf/python_work/XRD_Data/xrdsim/val_db/test_binxrd.db'],False)
+    test_dataset = ASEDataset(['/home/trf/python_work/XRD_Data/xrdsim/test_db/binxrd.db'],False)
 
 
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
@@ -76,9 +76,9 @@ def train(args,nowtime):
     # save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}'
     # if not os.path.exists('./checkpoints'):
     #     os.mkdir('./checkpoints')
-    save_path = f'/data/zzn/checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}_{args.seed}'
-    if not os.path.exists('/data/zzn/checkpoints'):
-        os.mkdir('/data/zzn/checkpoints')
+    save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}_{args.seed}'
+    if not os.path.exists('./checkpoints'):
+        os.mkdir('./checkpoints')
     os.makedirs(save_path, exist_ok=True)
     with open(save_path+'/args.json', 'w') as f:
         json.dump(args.__dict__, f)
