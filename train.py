@@ -76,9 +76,9 @@ def train(args,nowtime):
     # save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}'
     # if not os.path.exists('./checkpoints'):
     #     os.mkdir('./checkpoints')
-    save_path = f'/data/zzn/checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}_{args.seed}'
-    if not os.path.exists('/data/zzn/checkpoints'):
-        os.mkdir('/data/zzn/checkpoints')
+    save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}_{args.seed}'
+    if not os.path.exists('./checkpoints'):
+        os.mkdir('./checkpoints')
     os.makedirs(save_path, exist_ok=True)
     with open(save_path+'/args.json', 'w') as f:
         json.dump(args.__dict__, f)

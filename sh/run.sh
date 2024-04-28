@@ -4,8 +4,9 @@
 
 
 models=('cnn2' 'cnn3' 'icnn' 'pqnet' 'icsd' 'mp' 'autoanalyzer' 'xca')
+seed=('100' '200' '300' '400' '500')
 # models=('cnn2')
-tasks=('crysystem')
+tasks=('spg')
 
 
 for task in "${tasks[@]}"; do
