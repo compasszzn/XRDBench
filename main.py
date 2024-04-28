@@ -10,6 +10,7 @@ import wandb
 
 
 
+import wandb
 
 def set_seed(seed=3407):
     os.environ['PYTHONHASHSEED'] = str(seed)

@@ -12,7 +12,7 @@ from model import ICSD
 from model import MP
 from model import AutoAnalyzer
 from model import XCA
-from model import IUCrJ_CNNspg
+from model import IUCrJ_CNN
 from dataset.dataset import ASEDataset
 from tqdm import tqdm
 import time
@@ -65,7 +65,7 @@ def train(args,test_loss_list, macro_f1_list, macro_precision_list,macro_recall_
     elif args.model == 'xca':
         model = XCA.Model(args)
     elif args.model == 'IUCrj_CNN':
-        model = IUCrJ_CNNspg.Model(args)
+        model = IUCrJ_CNN.Model(args)
     nowtime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     # save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}'
     # if not os.path.exists('./checkpoints'):
