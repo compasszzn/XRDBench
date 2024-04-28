@@ -3,8 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 import torch.nn.functional as F
-<<<<<<< HEAD
-from model.fcn import FCN
+
 from model import MIC_CNN2
 from model import MIC_CNN3 
 from model import ICNN
@@ -13,18 +12,7 @@ from model import ICSD
 from model import MP
 from model import AutoAnalyzer
 from model import XCA
-from model import IUCrJ_CNN
-=======
-from model.cnn2 import CNN2
-from model.cnn3 import CNN3
-from model.cnn import CNN
-from model.pqnet import PQNET
-from model.icsd import ICSD
-from model.mp import MP
-from model.xca import XCA
-from model.autoanalyzer import AUTOANALYZER
 from model import IUCrJ_CNN, NPCNN, CPICANN, FCN
->>>>>>> trf
 from dataset.dataset import ASEDataset
 from tqdm import tqdm
 import time
@@ -78,7 +66,12 @@ def train(args,test_loss_list, macro_f1_list, macro_precision_list,macro_recall_
         model = XCA.Model(args)
     elif args.model == 'IUCrj_CNN':
         model = IUCrJ_CNN.Model(args)
-<<<<<<< HEAD
+    elif args.model == 'NPCNN':
+        model = NPCNN.Model(args)
+    elif args.model == 'CPICANN':
+        model = CPICANN.Model(args)
+    elif args.model == 'FCN':
+        model = FCN.Model(args)
     nowtime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     # save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}'
     # if not os.path.exists('./checkpoints'):
@@ -86,18 +79,6 @@ def train(args,test_loss_list, macro_f1_list, macro_precision_list,macro_recall_
     save_path = f'/data/zzn/checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}'
     if not os.path.exists('/data/zzn/checkpoints'):
         os.mkdir('/data/zzn/checkpoints')
-=======
-    elif args.model == 'NPCNN':
-        model = NPCNN.Model(args)
-    elif args.model == 'CPICANN':
-        model = CPICANN.Model(args)
-    elif args.model == 'FCN':
-        model = FCN.Model(args)
-
-    save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_wd{args.weight_decay}'
-    if not os.path.exists('./checkpoints'):
-        os.mkdir('./checkpoints')
->>>>>>> trf
     os.makedirs(save_path, exist_ok=True)
     with open(save_path+'/args.json', 'w') as f:
         json.dump(args.__dict__, f)

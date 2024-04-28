@@ -6,8 +6,6 @@ __pycache__/
 # checkpoints
 checkpoints/
 outs/
-<<<<<<< HEAD
-=======
 log_all/
->>>>>>> trf
+log_new/
 wandb/

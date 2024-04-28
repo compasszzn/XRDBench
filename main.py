@@ -33,13 +33,7 @@ if __name__ == "__main__":
     parser.add_argument('--task', type=str, default="crysystem")
     
     # optimization
-<<<<<<< HEAD
     parser.add_argument('--num_workers', type=int, default=32,
-=======
-    parser.add_argument('--weight_decay', type=float, default=1e-12,
-                        help='weight decay')
-    parser.add_argument('--num_workers', type=int, default=4,
->>>>>>> trf
                         help='Num workers in dataloader')
     parser.add_argument('--trials', type=int, default=5)
     parser.add_argument('--batch_size', type=int, default=100,
