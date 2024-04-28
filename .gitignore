@@ -7,4 +7,4 @@ __pycache__/
 checkpoints/
 outs/
 log_all/
-wan_db/
+wandb/
