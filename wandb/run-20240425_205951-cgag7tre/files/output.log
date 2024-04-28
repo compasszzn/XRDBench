@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/home/zinanzheng/project/github/XRDBench/main.py", line 70, in <module>
+    wandb.log(seed)
+  File "/home/zinanzheng/anaconda3/envs/xrdbench/lib/python3.9/site-packages/wandb/sdk/wandb_run.py", line 420, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/zinanzheng/anaconda3/envs/xrdbench/lib/python3.9/site-packages/wandb/sdk/wandb_run.py", line 371, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/zinanzheng/anaconda3/envs/xrdbench/lib/python3.9/site-packages/wandb/sdk/wandb_run.py", line 361, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/zinanzheng/anaconda3/envs/xrdbench/lib/python3.9/site-packages/wandb/sdk/wandb_run.py", line 1838, in log
+    self._log(data=data, step=step, commit=commit)
+  File "/home/zinanzheng/anaconda3/envs/xrdbench/lib/python3.9/site-packages/wandb/sdk/wandb_run.py", line 1597, in _log
+    raise ValueError("wandb.log must be passed a dictionary")
+ValueError: wandb.log must be passed a dictionary

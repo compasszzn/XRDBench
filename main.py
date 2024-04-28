@@ -25,7 +25,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--epochs', type=int, default=50,
                         help='number of epochs')
-    parser.add_argument('--model', type=str, default="cnn3",
+    parser.add_argument('--model', type=str, default="cnn2",
                         help='Model name')
     parser.add_argument('--seed', type=int, default=-1, metavar='N',
                         help='the rand seed')
@@ -34,10 +34,10 @@ if __name__ == "__main__":
     # optimization
     parser.add_argument('--num_workers', type=int, default=32,
                         help='Num workers in dataloader')
-    parser.add_argument('--trials', type=int, default=2)
+    parser.add_argument('--trials', type=int, default=5)
     parser.add_argument('--batch_size', type=int, default=100,
                         help='Batch size. Does not scale with number of gpus.')
-    parser.add_argument('--lr', type=float, default=1e-4,
+    parser.add_argument('--lr', type=float, default=0.00025,
                         help='learning rate')
     parser.add_argument('--patience', type=int, default=3,
                         help='patience for early stopping')
@@ -81,3 +81,4 @@ if __name__ == "__main__":
     model_result['accuracy mean'] = np.mean(test_accuracy_list)
     model_result['accuracy std'] = np.std(test_accuracy_list)
     print(model_result)
+    
