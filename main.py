@@ -64,8 +64,8 @@ if __name__ == "__main__":
     wandb.login()
     wandb.init(
         # set the wandb project where this run will be logged
-        project="XRDBench",
-        
+        project="Official_XRDBench",
+        entity='xrdbench',
         # track hyperparameters and run metadata
         config=args.__dict__,
         name=nowtime

@@ -92,6 +92,7 @@ class EarlyStopping:
         self.best_test_recall = 0
         self.best_test_macrof1 = 0
         self.best_epoch=0
+        self.delta=delta
 
     def __call__(self,epoch, val_loss,test_loss,res, model, path):
         score = -val_loss
