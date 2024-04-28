@@ -86,13 +86,18 @@ class EarlyStopping:
         self.best_score = None
         self.early_stop = False
         self.val_loss_min = np.Inf
-        self.delta = delta
+        self.best_test_loss = np.Inf
+        self.best_test_accuracy = 0
+        self.best_test_precision = 0
+        self.best_test_recall = 0
+        self.best_test_macrof1 = 0
+        self.best_epoch=0
 
-    def __call__(self, val_loss, model, path):
+    def __call__(self,epoch, val_loss,test_loss,res, model, path):
         score = -val_loss
         if self.best_score is None:
             self.best_score = score
-            self.save_checkpoint(val_loss, model, path)
+            self.save_checkpoint(epoch,val_loss,test_loss,res, model, path)
         elif score < self.best_score + self.delta:
             self.counter += 1
             print(f'EarlyStopping counter: {self.counter} out of {self.patience}')
@@ -100,11 +105,17 @@ class EarlyStopping:
                 self.early_stop = True
         else:
             self.best_score = score
-            self.save_checkpoint(val_loss, model, path)
+            self.save_checkpoint(epoch,val_loss,test_loss,res, model, path)
             self.counter = 0
 
-    def save_checkpoint(self, val_loss, model, path):
+    def save_checkpoint(self, epoch,val_loss,test_loss,res, model, path):
         if self.verbose:
             print(f'Validation loss decreased ({self.val_loss_min:.6f} --> {val_loss:.6f}).  Saving model ...')
         torch.save(model, path + '/' + 'checkpoint.pth')
+        self.best_epoch = epoch
         self.val_loss_min = val_loss
+        self.best_test_loss = test_loss
+        self.best_test_accuracy = res['accuracy']
+        self.best_test_precision = res['macro_precision']
+        self.best_test_recall = res['macro_recall']
+        self.best_test_macrof1=res['macro_f1']

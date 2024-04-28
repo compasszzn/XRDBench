@@ -25,7 +25,7 @@ import datetime
 import warnings
 
 
-def train(args,test_loss_list, macro_f1_list, macro_precision_list,macro_recall_list,test_accuracy_list):
+def train(args,nowtime):
     warnings.filterwarnings("ignore")
     if args.use_gpu:
         device = torch.device('cuda:{}'.format(args.gpu))
@@ -72,7 +72,7 @@ def train(args,test_loss_list, macro_f1_list, macro_precision_list,macro_recall_
         model = CPICANN.Model(args)
     elif args.model == 'FCN':
         model = FCN.Model(args)
-    nowtime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    # nowtime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     # save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}'
     # if not os.path.exists('./checkpoints'):
     #     os.mkdir('./checkpoints')
@@ -87,49 +87,46 @@ def train(args,test_loss_list, macro_f1_list, macro_precision_list,macro_recall_
     # Define loss function and optimizer
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=args.lr)
-    # Training loop
-    best_val_loss = 1e8
-    best_test_loss = 1e8
-    best_epoch = 0
-    best_test_accuracy = 0
-    best_test_precision = 0
-    best_test_recall = 0
-    best_test_macrof1=0
+    # # Training loop
+    # best_val_loss = 1e8
+    # best_test_loss = 1e8
+    # best_epoch = 0
+    # best_test_accuracy = 0
+    # best_test_precision = 0
+    # best_test_recall = 0
+    # best_test_macrof1=0
     early_stopping = EarlyStopping(patience=args.patience, verbose=True)
     for epoch in range(args.epochs):
         train_loss, _ = run_epoch(model, optimizer, criterion, epoch, train_loader, device, args)
         val_loss, _ = run_epoch(model, optimizer, criterion, epoch, val_loader,device, args, backprop=False)
         test_loss, res = run_epoch(model, optimizer, criterion, epoch, test_loader,device, args, backprop=False)
-        if val_loss < best_val_loss:
-            best_val_loss = val_loss
-            best_test_loss = test_loss
-            best_test_accuracy = res['accuracy']
-            best_test_precision = res['macro_precision']
-            best_test_recall = res['macro_recall']
-            best_test_macrof1=res['macro_f1']
-            best_epoch = epoch
-        wandb.log({"epoch": epoch+1, "train_loss": train_loss, "val_loss": val_loss, 
-                   "test_loss":test_loss, "macro_f1":res['macro_f1'],
-                   "macro_precision":res['macro_precision'],
-                   "macro_recall":res['macro_recall'],"test_acc": res['accuracy']})
-        early_stopping(val_loss, model, save_path)
+        # if val_loss < best_val_loss:
+        #     best_val_loss = val_loss
+        #     best_test_loss = test_loss
+        #     best_test_accuracy = res['accuracy']
+        #     best_test_precision = res['macro_precision']
+        #     best_test_recall = res['macro_recall']
+        #     best_test_macrof1=res['macro_f1']
+        #     best_epoch = epoch
+        wandb.log({"epoch": epoch, "val_loss": val_loss, 
+                   "test_loss":test_loss, "test_f1":res['macro_f1'],
+                   "test_precision":res['macro_precision'],
+                   "test_recall":res['macro_recall'],"test_acc": res['accuracy']})
+        early_stopping(epoch,val_loss,test_loss,res, model, save_path)
         if early_stopping.early_stop:
             print("Early stopping")
             break
-    # wandb.log({"epoch": epoch+1, "train_loss": train_loss, "val_loss": best_val_loss, 
-    #                "test_loss":best_test_loss, "test_f1": best_test_macrof1,"test_precision":best_test_precision , 
-    #                "test_recall":best_test_recall ,"test_acc": best_test_accuracy})
-    test_loss_list.append(best_test_loss)
-    macro_f1_list.append(best_test_macrof1)
-    macro_precision_list.append(best_test_precision)
-    macro_recall_list.append(best_test_recall)
-    test_accuracy_list.append(best_test_accuracy)
+    wandb.log({"epoch": early_stopping.best_epoch, "val_loss": early_stopping.val_loss_min, 
+                   "test_loss":early_stopping.best_test_loss, "test_f1": early_stopping.best_test_macrof1,
+                   "test_precision":early_stopping.best_test_precision , 
+                   "test_recall":early_stopping.best_test_recall ,"test_acc": early_stopping.best_test_accuracy})
+
 
 
     print("*** Best Val Loss: %.5f \t Best Test Loss: %.5f \t Best Test Accuracy: %.5f  \t Best Macro-F1: %.5f\t Best epoch %d" %
-                (best_val_loss, best_test_loss, best_test_accuracy,best_test_macrof1, best_epoch))
+                (early_stopping.val_loss_min, early_stopping.best_test_loss, early_stopping.best_test_accuracy,early_stopping.best_test_macrof1, early_stopping.best_epoch))
 
-    return best_test_accuracy
+    return early_stopping
 
 def run_epoch(model, optimizer, criterion, epoch, loader, device, args, backprop=True):
     if backprop:

@@ -7,6 +7,7 @@ import os
 from train import train
 import datetime
 import wandb
+import json
 
 
 
@@ -30,7 +31,7 @@ if __name__ == "__main__":
                         help='Model name')
     parser.add_argument('--seed', type=int, default=-1, metavar='N',
                         help='the rand seed')
-    parser.add_argument('--task', type=str, default="crysystem")
+    parser.add_argument('--task', type=str, default="spg")
     
     # optimization
     parser.add_argument('--num_workers', type=int, default=32,
@@ -47,12 +48,12 @@ if __name__ == "__main__":
 
     # GPU
     parser.add_argument('--use_gpu', type=bool, default=True, help='use gpu')
-    parser.add_argument('--gpu', type=int, default=3, help='gpu')
+    parser.add_argument('--gpu', type=int, default=0, help='gpu')
 
     args = parser.parse_args()
     
 
-    model_result = {'name': args.model}
+    model_result = {'name': args.model,'task':args.task}
 
     test_loss_list, macro_f1_list, macro_precision_list,macro_recall_list,test_accuracy_list = [], [], [], [], []
     for t in range(args.trials):
@@ -71,7 +72,13 @@ if __name__ == "__main__":
             config=args.__dict__,
             name=nowtime
             )
-        train(args,test_loss_list, macro_f1_list, macro_precision_list,macro_recall_list,test_accuracy_list)
+        wandb.log({"real_seed":seed})
+        output=train(args,nowtime)
+        test_loss_list.append(output.best_test_loss)
+        macro_f1_list.append(output.best_test_macrof1)
+        macro_precision_list.append(output.best_test_precision)
+        macro_recall_list.append(output.best_test_recall)
+        test_accuracy_list.append(output.best_test_accuracy)
         wandb.finish()
     model_result['loss mean'] = np.mean(test_loss_list)
     model_result['loss std'] = np.std(test_loss_list)
@@ -83,5 +90,11 @@ if __name__ == "__main__":
     model_result['recall std'] = np.std(macro_recall_list)
     model_result['accuracy mean'] = np.mean(test_accuracy_list)
     model_result['accuracy std'] = np.std(test_accuracy_list)
+    save_path = f'./output'
+    if not os.path.exists('./output'):
+        os.mkdir('./output')
+    os.makedirs(save_path, exist_ok=True)
+    with open(save_path+f"/{args.model}_{args.task}.json", "w") as f:
+        json.dump(model_result, f)
     print(model_result)
     
