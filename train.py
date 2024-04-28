@@ -3,7 +3,6 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 import torch.nn.functional as F
-from model.FCN import FCN
 from model.cnn2 import CNN2
 from model.cnn3 import CNN3
 from model.cnn import CNN

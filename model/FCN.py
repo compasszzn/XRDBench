@@ -36,7 +36,8 @@ class Model(nn.Module):
         
     @staticmethod
     def weight_init(m):
-          nn.init.xavier_uniform_(m.weight)
+        if isinstance(m, nn.Conv1d):
+            nn.init.xavier_uniform_(m.weight)
           
     def forward(self, x):
         x = F.interpolate(x,size=8192,mode='linear', align_corners=False)

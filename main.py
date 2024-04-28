@@ -22,7 +22,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--epochs', type=int, default=20,
                         help='number of epochs')
-    parser.add_argument('--model', type=str, default="FCN",
+    parser.add_argument('--model', type=str, default="IUCrj_CNN",
                         help='Model name')
     parser.add_argument('--seed', type=int, default=2023, metavar='N',
                         help='the rand seed')
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     # optimization
     parser.add_argument('--weight_decay', type=float, default=1e-12,
                         help='weight decay')
-    parser.add_argument('--num_workers', type=int, default=32,
+    parser.add_argument('--num_workers', type=int, default=4,
                         help='Num workers in dataloader')
     parser.add_argument('--batch_size', type=int, default=100,
                         help='Batch size. Does not scale with number of gpus.')

@@ -1,0 +1,27 @@
+2024-04-25 14:30:44,126 INFO    MainThread:13634 [wandb_setup.py:_flush():76] Current SDK version is 0.15.10
+2024-04-25 14:30:44,127 INFO    MainThread:13634 [wandb_setup.py:_flush():76] Configure stats pid to 13634
+2024-04-25 14:30:44,127 INFO    MainThread:13634 [wandb_setup.py:_flush():76] Loading settings from /home/trf/.config/wandb/settings
+2024-04-25 14:30:44,127 INFO    MainThread:13634 [wandb_setup.py:_flush():76] Loading settings from /home/trf/python_work/XRDBench/wandb/settings
+2024-04-25 14:30:44,127 INFO    MainThread:13634 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-04-25 14:30:44,128 INFO    MainThread:13634 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-04-25 14:30:44,128 INFO    MainThread:13634 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program': '/home/trf/python_work/XRDBench/main.py'}
+2024-04-25 14:30:44,128 INFO    MainThread:13634 [wandb_init.py:_log_setup():524] Logging user logs to /home/trf/python_work/XRDBench/wandb/run-20240425_143044-9fnansr5/logs/debug.log
+2024-04-25 14:30:44,128 INFO    MainThread:13634 [wandb_init.py:_log_setup():525] Logging internal logs to /home/trf/python_work/XRDBench/wandb/run-20240425_143044-9fnansr5/logs/debug-internal.log
+2024-04-25 14:30:44,128 INFO    MainThread:13634 [wandb_init.py:init():564] calling init triggers
+2024-04-25 14:30:44,128 INFO    MainThread:13634 [wandb_init.py:init():571] wandb.init called with sweep_config: {}
+config: {'epochs': 100, 'model': 'FCN', 'seed': 2023, 'task': 'crysystem', 'weight_decay': 1e-12, 'num_workers': 32, 'batch_size': 64, 'lr': 0.0005, 'patience': 5, 'warmup_epochs': 2, 'use_gpu': True, 'gpu': 7}
+2024-04-25 14:30:44,129 INFO    MainThread:13634 [wandb_init.py:init():614] starting backend
+2024-04-25 14:30:44,129 INFO    MainThread:13634 [wandb_init.py:init():618] setting up manager
+2024-04-25 14:30:44,138 INFO    MainThread:13634 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-04-25 14:30:44,143 INFO    MainThread:13634 [wandb_init.py:init():624] backend started and connected
+2024-04-25 14:30:44,156 INFO    MainThread:13634 [wandb_init.py:init():715] updated telemetry
+2024-04-25 14:30:44,181 INFO    MainThread:13634 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-04-25 14:30:45,042 INFO    MainThread:13634 [wandb_run.py:_on_init():2220] communicating current version
+2024-04-25 14:30:48,160 INFO    MainThread:13634 [wandb_run.py:_on_init():2229] got version response upgrade_message: "wandb version 0.16.6 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-04-25 14:30:48,161 INFO    MainThread:13634 [wandb_init.py:init():799] starting run threads in backend
+2024-04-25 14:31:18,336 INFO    MainThread:13634 [wandb_run.py:_console_start():2199] atexit reg
+2024-04-25 14:31:18,344 INFO    MainThread:13634 [wandb_run.py:_redirect():2054] redirect: wrap_raw
+2024-04-25 14:31:18,349 INFO    MainThread:13634 [wandb_run.py:_redirect():2119] Wrapping output streams.
+2024-04-25 14:31:18,351 INFO    MainThread:13634 [wandb_run.py:_redirect():2144] Redirects installed.
+2024-04-25 14:31:18,361 INFO    MainThread:13634 [wandb_init.py:init():840] run started, returning control to user process

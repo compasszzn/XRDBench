@@ -1,0 +1,419 @@
+2024-04-25 14:28:41,891 INFO    StreamThr :5143 [internal.py:wandb_internal():86] W&B internal server running at pid: 5143, started at: 2024-04-25 14:28:41.887934
+2024-04-25 14:28:41,908 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status
+2024-04-25 14:28:41,913 INFO    WriterThread:5143 [datastore.py:open_for_write():85] open: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/run-iibm7j0j.wandb
+2024-04-25 14:28:41,915 DEBUG   SenderThread:5143 [sender.py:send():379] send: header
+2024-04-25 14:28:41,919 DEBUG   SenderThread:5143 [sender.py:send():379] send: run
+2024-04-25 14:28:42,622 INFO    SenderThread:5143 [dir_watcher.py:__init__():211] watching files in: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files
+2024-04-25 14:28:42,624 INFO    SenderThread:5143 [sender.py:_start_run_threads():1121] run started: iibm7j0j with start time 1714026521.887784
+2024-04-25 14:28:42,630 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: check_version
+2024-04-25 14:28:42,634 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: check_version
+2024-04-25 14:28:46,905 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: run_start
+2024-04-25 14:28:47,054 DEBUG   HandlerThread:5143 [system_info.py:__init__():32] System info init
+2024-04-25 14:28:47,055 DEBUG   HandlerThread:5143 [system_info.py:__init__():47] System info init done
+2024-04-25 14:28:47,055 INFO    HandlerThread:5143 [system_monitor.py:start():181] Starting system monitor
+2024-04-25 14:28:47,056 INFO    SystemMonitor:5143 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2024-04-25 14:28:47,058 INFO    HandlerThread:5143 [system_monitor.py:probe():201] Collecting system info
+2024-04-25 14:28:47,063 INFO    SystemMonitor:5143 [interfaces.py:start():190] Started cpu monitoring
+2024-04-25 14:28:47,066 INFO    SystemMonitor:5143 [interfaces.py:start():190] Started disk monitoring
+2024-04-25 14:28:47,071 INFO    SystemMonitor:5143 [interfaces.py:start():190] Started gpu monitoring
+2024-04-25 14:28:47,075 INFO    SystemMonitor:5143 [interfaces.py:start():190] Started memory monitoring
+2024-04-25 14:28:47,082 INFO    SystemMonitor:5143 [interfaces.py:start():190] Started network monitoring
+2024-04-25 14:28:47,334 DEBUG   HandlerThread:5143 [system_info.py:probe():196] Probing system
+2024-04-25 14:28:47,341 DEBUG   HandlerThread:5143 [system_info.py:_probe_git():181] Probing git
+2024-04-25 14:28:47,362 DEBUG   HandlerThread:5143 [system_info.py:_probe_git():189] Probing git done
+2024-04-25 14:28:47,363 DEBUG   HandlerThread:5143 [system_info.py:probe():244] Probing system done
+2024-04-25 14:28:47,363 DEBUG   HandlerThread:5143 [system_monitor.py:probe():210] {'os': 'Linux-5.15.0-101-generic-x86_64-with-glibc2.31', 'python': '3.10.13', 'heartbeatAt': '2024-04-25T06:28:47.334689', 'startedAt': '2024-04-25T06:28:41.871725', 'docker': None, 'cuda': None, 'args': ('--model', 'FCN', '--task', 'spg', '--epochs', '100', '--lr', '0.00025', '--batch_size', '64', '--gpu', '1'), 'state': 'running', 'program': '/home/trf/python_work/XRDBench/main.py', 'codePathLocal': 'main.py', 'codePath': 'main.py', 'git': {'remote': 'https://github.com/compasszzn/XRDBench.git', 'commit': '425def7be43e07dc0c9c591a455ba87f28238aed'}, 'email': '824449964@qq.com', 'root': '/home/trf/python_work/XRDBench', 'host': 'user-AS-4124GS-TNR', 'username': 'trf', 'executable': '/home/trf/envs/python_matlab/bin/python', 'cpu_count': 128, 'cpu_count_logical': 256, 'cpu_freq': {'current': 3086.321945312501, 'min': 1500.0, 'max': 2450.0}, 'cpu_freq_per_core': [{'current': 3099.232, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.203, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.469, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.598, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.538, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.621, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.61, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.286, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.649, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.704, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.577, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.333, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.701, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.482, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.324, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.122, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.742, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.628, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.396, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.686, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.38, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.629, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.455, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.694, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.084, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.209, 'min': 1500.0, 'max': 2450.0}, {'current': 3098.871, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.191, 'min': 1500.0, 'max': 2450.0}, {'current': 3098.961, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.204, 'min': 1500.0, 'max': 2450.0}, {'current': 3098.809, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.246, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.711, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.515, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.528, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.545, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.69, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.699, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.6, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.495, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.552, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.694, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.368, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.183, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.505, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.061, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.582, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.567, 'min': 1500.0, 'max': 2450.0}, {'current': 3098.993, 'min': 1500.0, 'max': 2450.0}, {'current': 3098.993, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.281, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.223, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.222, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.338, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.141, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.338, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.645, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.617, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.741, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.719, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.391, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.684, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.456, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.716, 'min': 1500.0, 'max': 2450.0}, {'current': 2450.0, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.163, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.339, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.627, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.204, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.33, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.446, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.162, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.392, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.625, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.451, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.558, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.222, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.618, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.447, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.433, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.322, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.629, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.448, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.45, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.225, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.283, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.327, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.226, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.27, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.23, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.742, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.628, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.449, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.744, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.454, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.686, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.621, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.508, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.166, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.455, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.627, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.108, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.673, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.313, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.164, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.109, 'min': 1500.0, 'max': 2450.0}, {'current': 3098.933, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.397, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.306, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.05, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.301, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.339, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.64, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.686, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.233, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.509, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.685, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.628, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.679, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.685, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.214, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.509, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.738, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.574, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.513, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.511, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.514, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.224, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.17, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.206, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.406, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.6, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.533, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.623, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.579, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.285, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.707, 'min': 1500.0, 'max': 2450.0}, {'current': 1500.0, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.573, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.338, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.702, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.484, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.329, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.115, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.743, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.628, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.455, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.688, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.394, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.603, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.455, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.681, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.029, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.25, 'min': 1500.0, 'max': 2450.0}, {'current': 3098.874, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.186, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.05, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.264, 'min': 1500.0, 'max': 2450.0}, {'current': 3098.814, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.26, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.721, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.499, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.531, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.553, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.702, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.699, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.601, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.493, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.552, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.691, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.377, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.177, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.501, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.026, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.582, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.623, 'min': 1500.0, 'max': 2450.0}, {'current': 3098.994, 'min': 1500.0, 'max': 2450.0}, {'current': 3098.937, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.232, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.107, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.223, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.338, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.107, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.342, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.587, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.619, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.737, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.718, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.386, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.684, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.457, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.736, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.393, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.166, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.343, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.629, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.208, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.226, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.447, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.224, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.394, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.627, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.455, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.558, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.226, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.618, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.429, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.434, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.327, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.571, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.522, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.342, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.207, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.436, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.345, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.202, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.268, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.2, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.743, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.579, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.428, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.697, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.507, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.586, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.588, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.429, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.194, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.43, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.583, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.112, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.743, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.322, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.023, 'min': 1500.0, 'max': 2450.0}, {'current': 3098.772, 'min': 1500.0, 'max': 2450.0}, {'current': 3098.781, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.031, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.024, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.036, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.274, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.2, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.844, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.672, 'min': 1500.0, 'max': 2450.0}, {'current': 3100.086, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.712, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.743, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.744, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.639, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.742, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.551, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.809, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.302, 'min': 1500.0, 'max': 2450.0}, {'current': 3098.858, 'min': 1500.0, 'max': 2450.0}, {'current': 3098.854, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.079, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.741, 'min': 1500.0, 'max': 2450.0}, {'current': 3099.085, 'min': 1500.0, 'max': 2450.0}], 'disk': {'/': {'total': 877.2488670349121, 'used': 781.813533782959}}, 'gpu': 'NVIDIA GeForce RTX 4090', 'gpu_count': 8, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 4090', 'memory_total': 25757220864}, {'name': 'NVIDIA GeForce RTX 4090', 'memory_total': 25757220864}, {'name': 'NVIDIA GeForce RTX 4090', 'memory_total': 25757220864}, {'name': 'NVIDIA GeForce RTX 4090', 'memory_total': 25757220864}, {'name': 'NVIDIA GeForce RTX 4090', 'memory_total': 25757220864}, {'name': 'NVIDIA GeForce RTX 4090', 'memory_total': 25757220864}, {'name': 'NVIDIA GeForce RTX 4090', 'memory_total': 25757220864}, {'name': 'NVIDIA GeForce RTX 4090', 'memory_total': 25757220864}], 'memory': {'total': 503.6703910827637}}
+2024-04-25 14:28:47,364 INFO    HandlerThread:5143 [system_monitor.py:probe():211] Finished collecting system info
+2024-04-25 14:28:47,364 INFO    HandlerThread:5143 [system_monitor.py:probe():214] Publishing system info
+2024-04-25 14:28:47,364 DEBUG   HandlerThread:5143 [system_info.py:_save_pip():52] Saving list of pip packages installed into the current environment
+2024-04-25 14:28:47,366 DEBUG   HandlerThread:5143 [system_info.py:_save_pip():68] Saving pip packages done
+2024-04-25 14:28:47,366 DEBUG   HandlerThread:5143 [system_info.py:_save_conda():75] Saving list of conda packages installed into the current environment
+2024-04-25 14:28:47,640 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_created():271] file/dir created: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/conda-environment.yaml
+2024-04-25 14:28:47,641 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_created():271] file/dir created: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/requirements.txt
+2024-04-25 14:29:02,657 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/conda-environment.yaml
+2024-04-25 14:29:03,806 DEBUG   HandlerThread:5143 [system_info.py:_save_conda():87] Saving conda packages done
+2024-04-25 14:29:03,815 INFO    HandlerThread:5143 [system_monitor.py:probe():216] Finished publishing system info
+2024-04-25 14:29:03,830 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:29:03,832 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:29:03,832 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:29:03,833 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:29:03,833 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:29:03,835 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:29:03,835 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:29:03,838 DEBUG   SenderThread:5143 [sender.py:send():379] send: files
+2024-04-25 14:29:03,840 INFO    SenderThread:5143 [sender.py:_save_file():1375] saving file wandb-metadata.json with policy now
+2024-04-25 14:29:03,864 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:29:03,876 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:29:03,878 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:29:04,403 DEBUG   SenderThread:5143 [sender.py:send():379] send: telemetry
+2024-04-25 14:29:04,662 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_created():271] file/dir created: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/wandb-metadata.json
+2024-04-25 14:29:04,663 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_created():271] file/dir created: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:29:04,907 INFO    wandb-upload_0:5143 [upload_job.py:push():131] Uploaded file /tmp/tmplsqwsxfewandb/oz2ckb3o-wandb-metadata.json
+2024-04-25 14:29:06,667 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:29:08,430 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:29:13,441 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:29:14,683 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/config.yaml
+2024-04-25 14:29:18,743 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:29:18,856 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:29:18,860 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:29:18,901 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:29:24,290 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:29:29,297 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:29:33,863 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:29:33,867 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:29:33,921 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:29:35,235 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:29:40,245 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:29:44,796 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:29:45,603 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:29:47,085 DEBUG   SystemMonitor:5143 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2024-04-25 14:29:47,106 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:29:48,911 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:29:48,912 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:29:48,925 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:29:51,232 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:29:56,242 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:30:01,248 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:30:03,881 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:30:03,915 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:30:03,918 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:30:07,184 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:30:12,188 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:30:17,107 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:30:18,119 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:30:18,883 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:30:18,948 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:30:18,951 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:30:23,263 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:30:28,274 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:30:33,276 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:30:33,888 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:30:33,933 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:30:33,941 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:30:39,232 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:30:44,244 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:30:47,125 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:30:48,913 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:30:48,966 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:30:48,970 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:30:49,307 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:30:54,329 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:30:59,332 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:31:03,912 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:31:03,933 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:31:03,936 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:31:05,214 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:31:10,217 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:31:15,222 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:31:17,131 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:31:18,908 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:31:18,936 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:31:18,938 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:31:21,201 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:31:26,205 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:31:31,211 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:31:33,959 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:31:33,963 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:31:33,968 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:31:36,303 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:31:41,307 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:31:46,314 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:31:47,139 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:31:48,911 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:31:48,964 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:31:48,967 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:31:52,312 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:31:57,316 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:32:02,321 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:32:03,912 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:32:03,962 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:32:03,964 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:32:08,321 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:32:13,325 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:32:17,154 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:32:18,922 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:32:18,968 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:32:18,974 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:32:19,254 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:32:24,261 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:32:29,265 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:32:33,926 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:32:33,975 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:32:33,982 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:32:35,252 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:32:40,259 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:32:45,266 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:32:47,157 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:32:48,926 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:32:48,972 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:32:48,975 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:32:50,294 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:32:55,296 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:33:00,305 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:33:03,298 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:33:03,929 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:33:03,972 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:33:03,974 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:33:05,315 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:33:07,320 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:33:09,323 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:33:10,402 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:33:11,327 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:33:13,331 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:33:15,763 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:33:17,166 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:33:18,931 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:33:18,985 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:33:18,987 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:33:21,046 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:33:23,353 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:33:26,559 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:33:31,568 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:33:33,372 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:33:33,932 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:33:33,988 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:33:33,990 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:33:37,280 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:33:42,287 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:33:47,168 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:33:47,390 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:33:48,171 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:33:48,933 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:33:49,015 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:33:49,016 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:33:53,309 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:33:58,316 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:34:03,319 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:34:03,935 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:34:04,001 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: stop_status
+2024-04-25 14:34:04,006 DEBUG   SenderThread:5143 [sender.py:send_request():406] send_request: stop_status
+2024-04-25 14:34:09,016 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:34:14,023 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:34:18,938 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:34:24,074 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:34:25,675 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:34:25,681 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:34:27,462 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:34:29,105 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:34:29,466 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:34:30,792 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:34:31,468 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:34:33,471 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:34:33,958 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:34:35,473 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:34:36,024 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:34:39,185 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:34:41,032 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:34:44,205 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:34:46,035 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:34:47,183 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:34:48,969 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:34:49,497 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:34:51,218 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:34:51,500 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:34:53,504 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:34:54,249 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:34:55,514 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:34:56,535 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:34:57,517 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:34:59,265 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:34:59,520 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:35:01,872 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:35:03,960 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:35:06,874 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:35:09,294 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:35:11,876 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:35:14,300 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:35:16,879 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:35:17,188 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:35:18,957 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:35:22,206 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:35:24,308 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:35:25,570 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:35:27,444 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:35:27,573 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:35:29,334 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:35:29,580 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:35:31,582 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:35:32,548 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:35:33,583 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:35:33,969 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:35:35,585 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:35:38,435 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:35:39,375 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:35:43,440 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:35:44,395 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:35:47,194 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:35:48,970 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:35:49,199 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:35:54,202 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:35:54,411 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:35:59,206 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:35:59,415 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:36:01,627 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:36:03,626 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:36:03,971 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:36:04,510 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:36:05,629 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:36:07,630 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:36:09,426 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:36:09,632 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:36:09,818 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:36:11,635 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:36:13,637 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:36:14,437 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:36:15,447 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:36:17,199 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:36:18,981 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:36:21,213 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:36:24,460 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:36:26,217 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:36:29,466 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:36:31,223 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:36:33,983 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:36:36,229 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:36:39,514 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:36:39,682 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:36:41,516 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:36:41,683 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:36:43,686 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:36:44,528 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:36:45,690 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:36:46,764 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:36:47,201 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:36:47,692 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:36:48,985 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:36:49,694 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:36:51,873 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:36:54,573 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:36:56,877 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:36:59,583 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:37:01,892 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:37:03,989 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:37:06,895 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:37:09,598 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:37:09,726 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:37:11,732 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:37:12,019 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:37:13,734 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:37:14,607 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:37:15,735 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:37:17,214 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:37:17,219 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:37:17,287 WARNING FileStreamThread:5143 [file_stream.py:request_with_retry():667] requests_with_retry encountered retryable exception: HTTPSConnectionPool(host='api.wandb.ai', port=443): Read timed out. (read timeout=180). func: functools.partial(<bound method Session.post of <requests.sessions.Session object at 0x7f1b73b06830>>, timeout=180), args: ('https://api.wandb.ai/files/hkustgz-batteryinformatics/XRDBench/iibm7j0j/file_stream',), kwargs: {'json': {'files': {'wandb-events.jsonl': {'offset': 8, 'content': ['{"system.network.sent": 5226187.93, "system.network.recv": 4397736.87, "system.proc.memory.availableMB": 376368.28, "system.memory": 27.02, "system.proc.memory.rssMB": 4715.24, "system.proc.memory.percent": 0.91, "system.cpu": 0.07, "system.cpu.0.cpu_percent": 98.73, "system.cpu.1.cpu_percent": 99.14, "system.cpu.2.cpu_percent": 99.97, "system.cpu.3.cpu_percent": 99.37, "system.cpu.4.cpu_percent": 99.5, "system.cpu.5.cpu_percent": 99.9, "system.cpu.6.cpu_percent": 99.97, "system.cpu.7.cpu_percent": 99.93, "system.cpu.8.cpu_percent": 99.53, "system.cpu.9.cpu_percent": 100.0, "system.cpu.10.cpu_percent": 99.97, "system.cpu.11.cpu_percent": 99.6, "system.cpu.12.cpu_percent": 99.9, "system.cpu.13.cpu_percent": 98.57, "system.cpu.14.cpu_percent": 99.97, "system.cpu.15.cpu_percent": 100.0, "system.cpu.16.cpu_percent": 99.37, "system.cpu.17.cpu_percent": 99.74, "system.cpu.18.cpu_percent": 99.93, "system.cpu.19.cpu_percent": 100.0, "system.cpu.20.cpu_percent": 99.93, "system.cpu.21.cpu_percent": 100.0, "system.cpu.22.cpu_percent": 100.0, "system.cpu.23.cpu_percent": 99.97, "system.cpu.24.cpu_percent": 99.93, "system.cpu.25.cpu_percent": 100.0, "system.cpu.26.cpu_percent": 100.0, "system.cpu.27.cpu_percent": 100.0, "system.cpu.28.cpu_percent": 99.97, "system.cpu.29.cpu_percent": 99.7, "system.cpu.30.cpu_percent": 99.97, "system.cpu.31.cpu_percent": 99.97, "system.cpu.32.cpu_percent": 100.0, "system.cpu.33.cpu_percent": 100.0, "system.cpu.34.cpu_percent": 99.97, "system.cpu.35.cpu_percent": 99.93, "system.cpu.36.cpu_percent": 100.0, "system.cpu.37.cpu_percent": 100.0, "system.cpu.38.cpu_percent": 99.93, "system.cpu.39.cpu_percent": 99.97, "system.cpu.40.cpu_percent": 100.0, "system.cpu.41.cpu_percent": 99.97, "system.cpu.42.cpu_percent": 100.0, "system.cpu.43.cpu_percent": 100.0, "system.cpu.44.cpu_percent": 100.0, "system.cpu.45.cpu_percent": 100.0, "system.cpu.46.cpu_percent": 100.0, "system.cpu.47.cpu_percent": 100.0, "system.cpu.48.cpu_percent": 99.97, "system.cpu.49.cpu_percent": 100.0, "system.cpu.50.cpu_percent": 100.0, "system.cpu.51.cpu_percent": 100.0, "system.cpu.52.cpu_percent": 100.0, "system.cpu.53.cpu_percent": 100.0, "system.cpu.54.cpu_percent": 99.93, "system.cpu.55.cpu_percent": 100.0, "system.cpu.56.cpu_percent": 99.8, "system.cpu.57.cpu_percent": 99.83, "system.cpu.58.cpu_percent": 100.0, "system.cpu.59.cpu_percent": 99.97, "system.cpu.60.cpu_percent": 99.97, "system.cpu.61.cpu_percent": 99.97, "system.cpu.62.cpu_percent": 100.0, "system.cpu.63.cpu_percent": 99.33, "system.cpu.64.cpu_percent": 98.18, "system.cpu.65.cpu_percent": 98.65, "system.cpu.66.cpu_percent": 99.08, "system.cpu.67.cpu_percent": 98.75, "system.cpu.68.cpu_percent": 99.63, "system.cpu.69.cpu_percent": 97.86, "system.cpu.70.cpu_percent": 98.71, "system.cpu.71.cpu_percent": 99.37, "system.cpu.72.cpu_percent": 99.2, "system.cpu.73.cpu_percent": 99.13, "system.cpu.74.cpu_percent": 98.55, "system.cpu.75.cpu_percent": 97.67, "system.cpu.76.cpu_percent": 98.15, "system.cpu.77.cpu_percent": 98.91, "system.cpu.78.cpu_percent": 98.55, "system.cpu.79.cpu_percent": 99.18, "system.cpu.80.cpu_percent": 99.64, "system.cpu.81.cpu_percent": 98.97, "system.cpu.82.cpu_percent": 99.47, "system.cpu.83.cpu_percent": 98.81, "system.cpu.84.cpu_percent": 98.91, "system.cpu.85.cpu_percent": 99.57, "system.cpu.86.cpu_percent": 99.9, "system.cpu.87.cpu_percent": 99.28, "system.cpu.88.cpu_percent": 99.04, "system.cpu.89.cpu_percent": 99.54, "system.cpu.90.cpu_percent": 99.01, "system.cpu.91.cpu_percent": 99.9, "system.cpu.92.cpu_percent": 99.86, "system.cpu.93.cpu_percent": 99.47, "system.cpu.94.cpu_percent": 99.5, "system.cpu.95.cpu_percent": 99.44, "system.cpu.96.cpu_percent": 98.73, "system.cpu.97.cpu_percent": 98.61, "system.cpu.98.cpu_percent": 99.25, "system.cpu.99.cpu_percent": 99.31, "system.cpu.100.cpu_percent": 97.98, "system.cpu.101.cpu_percent": 98.71, "system.cpu.102.cpu_percent": 98.43, "system.cpu.103.cpu_percent": 99.87, "system.cpu.104.cpu_percent": 98.9, "system.cpu.105.cpu_percent": 99.02, "system.cpu.106.cpu_percent": 98.74, "system.cpu.107.cpu_percent": 99.93, "system.cpu.108.cpu_percent": 98.29, "system.cpu.109.cpu_percent": 99.08, "system.cpu.110.cpu_percent": 99.57, "system.cpu.111.cpu_percent": 99.57, "system.cpu.112.cpu_percent": 99.93, "system.cpu.113.cpu_percent": 99.93, "system.cpu.114.cpu_percent": 99.93, "system.cpu.115.cpu_percent": 99.73, "system.cpu.116.cpu_percent": 99.93, "system.cpu.117.cpu_percent": 99.73, "system.cpu.118.cpu_percent": 99.48, "system.cpu.119.cpu_percent": 99.87, "system.cpu.120.cpu_percent": 99.97, "system.cpu.121.cpu_percent": 99.73, "system.cpu.122.cpu_percent": 99.31, "system.cpu.123.cpu_percent": 99.73, "system.cpu.124.cpu_percent": 99.54, "system.cpu.125.cpu_percent": 99.57, "system.cpu.126.cpu_percent": 99.74, "system.cpu.127.cpu_percent": 98.87, "system.cpu.128.cpu_percent": 99.57, "system.cpu.129.cpu_percent": 99.83, "system.cpu.130.cpu_percent": 99.83, "system.cpu.131.cpu_percent": 99.93, "system.cpu.132.cpu_percent": 99.9, "system.cpu.133.cpu_percent": 99.6, "system.cpu.134.cpu_percent": 99.77, "system.cpu.135.cpu_percent": 99.9, "system.cpu.136.cpu_percent": 99.8, "system.cpu.137.cpu_percent": 99.97, "system.cpu.138.cpu_percent": 99.9, "system.cpu.139.cpu_percent": 99.8, "system.cpu.140.cpu_percent": 99.57, "system.cpu.141.cpu_percent": 99.7, "system.cpu.142.cpu_percent": 99.97, "system.cpu.143.cpu_percent": 100.0, "system.cpu.144.cpu_percent": 99.53, "system.cpu.145.cpu_percent": 99.77, "system.cpu.146.cpu_percent": 100.0, "system.cpu.147.cpu_percent": 100.0, "system.cpu.148.cpu_percent": 99.97, "system.cpu.149.cpu_percent": 99.97, "system.cpu.150.cpu_percent": 99.97, "system.cpu.151.cpu_percent": 100.0, "system.cpu.152.cpu_percent": 99.87, "system.cpu.153.cpu_percent": 100.0, "system.cpu.154.cpu_percent": 100.0, "system.cpu.155.cpu_percent": 100.0, "system.cpu.156.cpu_percent": 100.0, "system.cpu.157.cpu_percent": 99.97, "system.cpu.158.cpu_percent": 100.0, "system.cpu.159.cpu_percent": 100.0, "system.cpu.160.cpu_percent": 100.0, "system.cpu.161.cpu_percent": 99.97, "system.cpu.162.cpu_percent": 100.0, "system.cpu.163.cpu_percent": 100.0, "system.cpu.164.cpu_percent": 100.0, "system.cpu.165.cpu_percent": 99.9, "system.cpu.166.cpu_percent": 100.0, "system.cpu.167.cpu_percent": 100.0, "system.cpu.168.cpu_percent": 100.0, "system.cpu.169.cpu_percent": 100.0, "system.cpu.170.cpu_percent": 100.0, "system.cpu.171.cpu_percent": 100.0, "system.cpu.172.cpu_percent": 99.97, "system.cpu.173.cpu_percent": 100.0, "system.cpu.174.cpu_percent": 99.9, "system.cpu.175.cpu_percent": 100.0, "system.cpu.176.cpu_percent": 100.0, "system.cpu.177.cpu_percent": 100.0, "system.cpu.178.cpu_percent": 100.0, "system.cpu.179.cpu_percent": 100.0, "system.cpu.180.cpu_percent": 99.97, "system.cpu.181.cpu_percent": 100.0, "system.cpu.182.cpu_percent": 100.0, "system.cpu.183.cpu_percent": 100.0, "system.cpu.184.cpu_percent": 99.97, "system.cpu.185.cpu_percent": 99.93, "system.cpu.186.cpu_percent": 99.77, "system.cpu.187.cpu_percent": 99.97, "system.cpu.188.cpu_percent": 99.97, "system.cpu.189.cpu_percent": 99.54, "system.cpu.190.cpu_percent": 99.93, "system.cpu.191.cpu_percent": 99.97, "system.cpu.192.cpu_percent": 98.75, "system.cpu.193.cpu_percent": 99.53, "system.cpu.194.cpu_percent": 98.67, "system.cpu.195.cpu_percent": 99.21, "system.cpu.196.cpu_percent": 99.1, "system.cpu.197.cpu_percent": 98.04, "system.cpu.198.cpu_percent": 99.48, "system.cpu.199.cpu_percent": 98.55, "system.cpu.200.cpu_percent": 98.41, "system.cpu.201.cpu_percent": 98.47, "system.cpu.202.cpu_percent": 98.45, "system.cpu.203.cpu_percent": 98.81, "system.cpu.204.cpu_percent": 99.67, "system.cpu.205.cpu_percent": 99.07, "system.cpu.206.cpu_percent": 98.25, "system.cpu.207.cpu_percent": 99.16, "system.cpu.208.cpu_percent": 99.97, "system.cpu.209.cpu_percent": 98.67, "system.cpu.210.cpu_percent": 99.63, "system.cpu.211.cpu_percent": 98.98, "system.cpu.212.cpu_percent": 99.57, "system.cpu.213.cpu_percent": 98.12, "system.cpu.214.cpu_percent": 99.97, "system.cpu.215.cpu_percent": 99.34, "system.cpu.216.cpu_percent": 98.61, "system.cpu.217.cpu_percent": 98.59, "system.cpu.218.cpu_percent": 99.67, "system.cpu.219.cpu_percent": 99.71, "system.cpu.220.cpu_percent": 99.87, "system.cpu.221.cpu_percent": 99.45, "system.cpu.222.cpu_percent": 99.37, "system.cpu.223.cpu_percent": 99.21, "system.cpu.224.cpu_percent": 98.95, "system.cpu.225.cpu_percent": 99.67, "system.cpu.226.cpu_percent": 98.63, "system.cpu.227.cpu_percent": 99.93, "system.cpu.228.cpu_percent": 98.79, "system.cpu.229.cpu_percent": 99.37, "system.cpu.230.cpu_percent": 99.24, "system.cpu.231.cpu_percent": 99.93, "system.cpu.232.cpu_percent": 99.63, "system.cpu.233.cpu_percent": 99.35, "system.cpu.234.cpu_percent": 99.61, "system.cpu.235.cpu_percent": 100.0, "system.cpu.236.cpu_percent": 98.29, "system.cpu.237.cpu_percent": 99.27, "system.cpu.238.cpu_percent": 99.44, "system.cpu.239.cpu_percent": 99.41, "system.cpu.240.cpu_percent": 99.87, "system.cpu.241.cpu_percent": 100.0, "system.cpu.242.cpu_percent": 99.9, "system.cpu.243.cpu_percent": 99.67, "system.cpu.244.cpu_percent": 100.0, "system.cpu.245.cpu_percent": 99.57, "system.cpu.246.cpu_percent": 99.83, "system.cpu.247.cpu_percent": 99.9, "system.cpu.248.cpu_percent": 99.9, "system.cpu.249.cpu_percent": 99.83, "system.cpu.250.cpu_percent": 99.97, "system.cpu.251.cpu_percent": 99.73, "system.cpu.252.cpu_percent": 99.8, "system.cpu.253.cpu_percent": 99.57, "system.cpu.254.cpu_percent": 98.91, "system.cpu.255.cpu_percent": 98.06, "system.proc.cpu.threads": 176, "system.disk.\\\\.usagePercent": 93.9, "system.disk.\\\\.usageGB": 781.82, "system.disk.in": 476.75, "system.disk.out": 330.15, "_wandb": true, "_timestamp": 1714026827.161615, "_runtime": 305.273831}']}, 'output.log': {'offset': 6, 'content': ['ERROR 2024-04-25T06:33:46.926819   0%|          | 81/18683 [04:03<4:24:44,  1.17it/s]\n']}}, 'dropped': 0}}
+2024-04-25 14:37:17,737 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:37:18,992 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:37:19,747 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:37:23,140 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:37:24,621 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:37:28,176 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:37:29,693 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:37:31,763 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:37:33,712 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:37:34,027 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:37:38,717 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:37:39,707 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:37:43,722 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:37:44,721 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:37:47,212 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:37:48,992 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:37:49,216 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:37:54,226 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:37:54,769 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:37:59,233 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:37:59,788 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:38:03,997 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:38:04,237 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:38:09,246 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:38:09,813 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:38:09,852 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:38:11,857 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:38:13,860 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:38:14,290 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:38:14,825 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:38:15,861 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:38:17,217 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:38:17,863 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:38:19,001 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:38:19,304 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:38:19,868 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:38:21,869 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:38:23,871 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:38:24,767 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:38:24,865 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:38:29,800 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:38:29,881 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:38:29,882 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:38:31,885 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:38:33,896 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:38:34,019 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:38:35,112 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:38:35,920 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:38:37,921 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:38:39,957 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:38:41,095 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:38:45,005 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:38:46,109 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:38:47,227 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:38:49,008 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:38:51,238 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:38:54,103 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:38:56,047 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:38:56,713 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:38:58,051 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:38:59,138 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:39:00,294 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:39:02,211 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:39:04,092 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:39:04,220 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:39:07,367 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:39:08,449 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:39:09,247 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:39:10,450 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:39:12,453 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:39:12,480 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:39:14,649 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:39:17,270 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:39:18,285 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:39:19,026 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:39:23,312 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:39:24,774 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:39:28,314 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:39:29,959 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:39:33,316 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:39:34,027 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:39:38,325 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:39:39,084 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:39:43,585 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:39:44,097 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:39:45,549 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:39:47,231 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:39:49,033 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:39:49,236 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:39:54,142 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:39:54,315 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:39:55,565 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:39:57,565 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:39:59,156 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: keepalive
+2024-04-25 14:39:59,566 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:39:59,610 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:40:01,568 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:40:03,587 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:40:04,033 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: internal_messages
+2024-04-25 14:40:05,456 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:40:05,589 INFO    Thread-12 :5143 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/trf/python_work/XRDBench/wandb/run-20240425_142841-iibm7j0j/files/output.log
+2024-04-25 14:40:10,459 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:40:15,462 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:40:17,388 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:40:21,400 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:40:26,404 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:40:31,407 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:40:36,425 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:40:41,431 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:40:46,500 DEBUG   HandlerThread:5143 [handler.py:handle_request():144] handle_request: status_report
+2024-04-25 14:40:47,393 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:40:48,522 INFO    cpu       :5143 [interfaces.py:monitor():140] Process cpu has exited.
+2024-04-25 14:40:48,529 DEBUG   SystemMonitor:5143 [system_monitor.py:_start():166] Finished system metrics aggregation loop
+2024-04-25 14:40:48,530 DEBUG   SystemMonitor:5143 [system_monitor.py:_start():170] Publishing last batch of metrics
+2024-04-25 14:40:48,542 DEBUG   SenderThread:5143 [sender.py:send():379] send: stats
+2024-04-25 14:40:51,001 INFO    MainThread:5143 [internal.py:handle_exit():76] Internal process exited
