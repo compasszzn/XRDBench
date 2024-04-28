@@ -2,11 +2,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-class FCN(nn.Module):
-    def __init__(self, drop_rate=0.2, drop_rate_2=0.4):
-        super(FCN, self).__init__()
-        initializer = torch.nn.init.xavier_uniform_
-        self.encoder = nn.Linear(3501,2048)
+class Model(nn.Module):
+    def __init__(self, args, drop_rate=0.2, drop_rate_2=0.4):
+        super(Model, self).__init__()
         self.conv1 = nn.Conv1d(1, 16, kernel_size=3, stride=1, padding=1)
         self.conv2 = nn.Conv1d(16, 16, kernel_size=3, stride=1, padding=1)
         self.conv3 = nn.Conv1d(16, 32, kernel_size=3, stride=1, padding=1)
@@ -19,20 +17,34 @@ class FCN(nn.Module):
         self.conv10 = nn.Conv1d(256, 256, kernel_size=3, stride=1, padding=1)
         self.conv11 = nn.Conv1d(256, 512, kernel_size=3, stride=1, padding=1)
         self.conv12 = nn.Conv1d(512, 512, kernel_size=3, stride=1, padding=1)
-        self.conv13 = nn.Conv1d(512, 256, kernel_size=3, stride=1, padding=1)
-        self.conv14 = nn.Conv1d(256, 230, kernel_size=1, stride=1)
+        if args.task == 'spg':
+            drop_rate=0.05
+            drop_rate_2=0.05
+            self.conv13 = nn.Conv1d(512, 256, kernel_size=3, stride=1, padding=1)
+            self.conv14 = nn.Conv1d(256, 230, kernel_size=1, stride=1)
+        elif args.task == 'crysystem':
+            drop_rate=0.2
+            drop_rate_2=0.4
+            self.conv13 = nn.Conv1d(512, 64, kernel_size=3, stride=1, padding=1)
+            self.conv14 = nn.Conv1d(64, 7, kernel_size=1, stride=1)
 
-        self.pool = nn.MaxPool1d(kernel_size=2, stride=2, padding=0)
+        self.pool = nn.MaxPool1d(kernel_size=2, stride=2)
 
         self.dropout = nn.Dropout(p=drop_rate)
         self.dropout2 = nn.Dropout(p=drop_rate_2)
-
+        self.apply(self.weight_init)
+        
+    @staticmethod
+    def weight_init(m):
+        if isinstance(m, nn.Conv1d):
+            nn.init.xavier_uniform_(m.weight)
+          
     def forward(self, x):
-        x = self.encoder(x)
-        x = F.leaky_relu(self.conv1(x))
+        x = F.interpolate(x,size=8192,mode='linear', align_corners=False)
+        x = self.pool(F.leaky_relu(self.conv1(x)))
         x = self.dropout(x)
-        # x = self.pool(F.leaky_relu(self.conv2(x)))
-        # x = self.dropout(x)
+        x = self.pool(F.leaky_relu(self.conv2(x)))
+        x = self.dropout(x)
         x = self.pool(F.leaky_relu(self.conv3(x)))
         x = self.dropout(x)
         x = self.pool(F.leaky_relu(self.conv4(x)))
@@ -52,10 +64,11 @@ class FCN(nn.Module):
         x = self.pool(F.leaky_relu(self.conv11(x)))
         x = self.dropout(x)   
         x = self.pool(F.leaky_relu(self.conv12(x)))
-        x = self.dropout(x)   
-        x = self.pool(F.leaky_relu(self.conv13(x)))
-        x = self.dropout(x)
-        x = F.leaky_relu(self.conv14(x))
+        x = self.dropout2(x)   
+        
+        x = self.pool(self.conv13(x))
+        x = self.dropout2(x)
+        x = self.conv14(x)
         x = x.view(x.size(0), -1)
         x = F.softmax(x, dim=1)
         return x

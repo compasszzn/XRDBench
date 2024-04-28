@@ -5,13 +5,13 @@ import torch.nn.functional as F
 class Model(nn.Module):
     def __init__(self, args):
         super(Model, self).__init__()
-        self.cnn1 = nn.Conv1d(1, 80, kernel_size=100, stride=5, padding=20050)
+        self.cnn1 = nn.Conv1d(1, 80, kernel_size=100, stride=5, padding=48)
         self.dropout1 = nn.Dropout(0.3)
         self.avg_pool1 = nn.AvgPool1d(kernel_size=3, stride=2) # pooling layer
-        self.cnn2 = nn.Conv1d(80, 80, kernel_size=50, stride=5, padding=10023)
+        self.cnn2 = nn.Conv1d(80, 80, kernel_size=50, stride=5, padding=24)
         self.dropout2 = nn.Dropout(0.3)
         self.avg_pool2 = nn.AvgPool1d(kernel_size=3, stride=1)
-        self.cnn3 = nn.Conv1d(80, 80, kernel_size=25, stride=2, padding=2511)
+        self.cnn3 = nn.Conv1d(80, 80, kernel_size=25, stride=2, padding=11)
         self.dropout3 = nn.Dropout(0.3)
         self.avg_pool3 = nn.AvgPool1d(kernel_size=3, stride=1)
         
@@ -37,7 +37,7 @@ class Model(nn.Module):
         x = F.relu(self.cnn3(x))
         x = self.dropout3(x)
         x = self.avg_pool3(x)
-        
+        print(x.shape)
         x = self.MLP(x)
         x = F.softmax(x, dim=1)
         return x
