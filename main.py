@@ -29,15 +29,14 @@ if __name__ == "__main__":
                         help='number of epochs')
     parser.add_argument('--model', type=str, default="cnn2",
                         help='Model name')
-    parser.add_argument('--seed', type=int, default=-1, metavar='N',
+    parser.add_argument('--seed', type=int, default=2024, metavar='N',
                         help='the rand seed')
     parser.add_argument('--task', type=str, default="spg")
     
     # optimization
     parser.add_argument('--num_workers', type=int, default=32,
                         help='Num workers in dataloader')
-    parser.add_argument('--trials', type=int, default=5)
-    parser.add_argument('--batch_size', type=int, default=100,
+    parser.add_argument('--batch_size', type=int, default=128,
                         help='Batch size. Does not scale with number of gpus.')
     parser.add_argument('--lr', type=float, default=0.00025,
                         help='learning rate')
@@ -55,46 +54,44 @@ if __name__ == "__main__":
 
     model_result = {'name': args.model,'task':args.task}
 
-    test_loss_list, macro_f1_list, macro_precision_list,macro_recall_list,test_accuracy_list = [], [], [], [], []
-    for t in range(args.trials):
-        if args.seed < 0:
-            seed = random.randint(0,1000)
-        else:
-            seed = args.seed
-        set_seed(seed)
-        nowtime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        wandb.login()
-        wandb.init(
-            # set the wandb project where this run will be logged
-            project="XRDBench",
-            
-            # track hyperparameters and run metadata
-            config=args.__dict__,
-            name=nowtime
-            )
-        wandb.log({"real_seed":seed})
-        output=train(args,nowtime)
-        test_loss_list.append(output.best_test_loss)
-        macro_f1_list.append(output.best_test_macrof1)
-        macro_precision_list.append(output.best_test_precision)
-        macro_recall_list.append(output.best_test_recall)
-        test_accuracy_list.append(output.best_test_accuracy)
-        wandb.finish()
-    model_result['loss mean'] = np.mean(test_loss_list)
-    model_result['loss std'] = np.std(test_loss_list)
-    model_result['f1 mean'] = np.mean(macro_f1_list)
-    model_result['f1 std'] = np.std(macro_f1_list)
-    model_result['precision mean'] = np.mean(macro_precision_list)
-    model_result['precision std'] = np.std(macro_precision_list)
-    model_result['recall mean'] = np.mean(macro_recall_list)
-    model_result['recall std'] = np.std(macro_recall_list)
-    model_result['accuracy mean'] = np.mean(test_accuracy_list)
-    model_result['accuracy std'] = np.std(test_accuracy_list)
-    save_path = f'./output'
-    if not os.path.exists('./output'):
-        os.mkdir('./output')
-    os.makedirs(save_path, exist_ok=True)
-    with open(save_path+f"/{args.model}_{args.task}.json", "w") as f:
-        json.dump(model_result, f)
-    print(model_result)
+    # test_loss_list, macro_f1_list, macro_precision_list,macro_recall_list,test_accuracy_list = [], [], [], [], []
+    if args.seed < 0:
+        seed = random.randint(0,1000)
+    else:
+        seed = args.seed
+    set_seed(seed)
+    nowtime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    wandb.login()
+    wandb.init(
+        # set the wandb project where this run will be logged
+        project="XRDBench",
+        
+        # track hyperparameters and run metadata
+        config=args.__dict__,
+        name=nowtime
+        )
+    output=train(args,nowtime)
+    # test_loss_list.append(output.best_test_loss)
+    # macro_f1_list.append(output.best_test_macrof1)
+    # macro_precision_list.append(output.best_test_precision)
+    # macro_recall_list.append(output.best_test_recall)
+    # test_accuracy_list.append(output.best_test_accuracy)
+    wandb.finish()
+    # model_result['loss mean'] = np.mean(test_loss_list)
+    # model_result['loss std'] = np.std(test_loss_list)
+    # model_result['f1 mean'] = np.mean(macro_f1_list)
+    # model_result['f1 std'] = np.std(macro_f1_list)
+    # model_result['precision mean'] = np.mean(macro_precision_list)
+    # model_result['precision std'] = np.std(macro_precision_list)
+    # model_result['recall mean'] = np.mean(macro_recall_list)
+    # model_result['recall std'] = np.std(macro_recall_list)
+    # model_result['accuracy mean'] = np.mean(test_accuracy_list)
+    # model_result['accuracy std'] = np.std(test_accuracy_list)
+    # save_path = f'./output'
+    # if not os.path.exists('./output'):
+    #     os.mkdir('./output')
+    # os.makedirs(save_path, exist_ok=True)
+    # with open(save_path+f"/{args.model}_{args.task}.json", "w") as f:
+    #     json.dump(model_result, f)
+    # print(model_result)
     
