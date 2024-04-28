@@ -1,96 +1,0 @@
-wandb: Currently logged in as: trf824449964 (hkustgz-batteryinformatics). Use `wandb login --relogin` to force relogin
-wandb: Currently logged in as: trf824449964 (hkustgz-batteryinformatics). Use `wandb login --relogin` to force relogin
-wandb: Tracking run with wandb version 0.15.10
-wandb: Run data is saved locally in /home/trf/python_work/XRDBench/wandb/run-20240418_152839-dkx6ebkg
-wandb: Run `wandb offline` to turn off syncing.
-wandb: Syncing run 2024-04-18 15:28:38
-wandb: ⭐️ View project at https://wandb.ai/hkustgz-batteryinformatics/XRDBench
-wandb: 🚀 View run at https://wandb.ai/hkustgz-batteryinformatics/XRDBench/runs/dkx6ebkg
-['/data/zzn/xrdsim/train_1/binxrd.db', '/data/zzn/xrdsim/train_2/binxrd.db']
-Loaded data from: ['/data/zzn/xrdsim/train_1/binxrd.db', '/data/zzn/xrdsim/train_2/binxrd.db']
-['/data/zzn/xrdsim/val_db/test_binxrd.db']
-Loaded data from: ['/data/zzn/xrdsim/val_db/test_binxrd.db']
-['/data/zzn/xrdsim/test_db/binxrd.db']
-Loaded data from: ['/data/zzn/xrdsim/test_db/binxrd.db']
-Traceback (most recent call last):
-  File "/home/trf/python_work/XRDBench/main.py", line 62, in <module>
-    train(args)
-  File "/home/trf/python_work/XRDBench/train.py", line 44, in train
-    train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
-  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 344, in __init__
-    sampler = RandomSampler(dataset, generator=generator)  # type: ignore[arg-type]
-  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/utils/data/sampler.py", line 106, in __init__
-    if not isinstance(self.num_samples, int) or self.num_samples <= 0:
-  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/utils/data/sampler.py", line 114, in num_samples
-    return len(self.data_source)
-  File "/home/trf/python_work/XRDBench/dataset/dataset.py", line 13, in __len__
-    total_length = sum(len(db) for db in self.dbs)
-  File "/home/trf/python_work/XRDBench/dataset/dataset.py", line 13, in <genexpr>
-    total_length = sum(len(db) for db in self.dbs)
-  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/ase/db/core.py", line 506, in __len__
-    return self.count()
-  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/ase/parallel.py", line 244, in new_func
-    return func(*args, **kwargs)
-  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/ase/db/sqlite.py", line 727, in count
-    with self.managed_connection() as con:
-  File "/home/trf/envs/python_matlab/lib/python3.10/contextlib.py", line 135, in __enter__
-    return next(self.gen)
-  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/ase/db/sqlite.py", line 192, in managed_connection
-    con = self.connection or self._connect()
-  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/ase/db/sqlite.py", line 173, in _connect
-    return sqlite3.connect(self.filename, timeout=20)
-sqlite3.OperationalError: unable to open database file
-wandb: Waiting for W&B process to finish... (failed 1). Press Control-C to abort syncing.
-wandb: - 0.028 MB of 0.028 MB uploaded (0.000 MB deduped)wandb: \ 0.028 MB of 0.028 MB uploaded (0.000 MB deduped)wandb: | 0.028 MB of 0.028 MB uploaded (0.000 MB deduped)wandb: / 0.028 MB of 0.028 MB uploaded (0.000 MB deduped)wandb: wandb version 0.16.6 is available!  To upgrade, please run:
-wandb:  $ pip install wandb --upgrade
-wandb: Tracking run with wandb version 0.15.10
-wandb: Run data is saved locally in /home/trf/python_work/XRDBench/wandb/run-20240418_152847-pabbrxdo
-wandb: Run `wandb offline` to turn off syncing.
-wandb: Syncing run 2024-04-18 15:28:46
-wandb: ⭐️ View project at https://wandb.ai/hkustgz-batteryinformatics/XRDBench
-wandb: 🚀 View run at https://wandb.ai/hkustgz-batteryinformatics/XRDBench/runs/pabbrxdo
-['/data/zzn/xrdsim/train_1/binxrd.db', '/data/zzn/xrdsim/train_2/binxrd.db']
-Loaded data from: ['/data/zzn/xrdsim/train_1/binxrd.db', '/data/zzn/xrdsim/train_2/binxrd.db']
-['/data/zzn/xrdsim/val_db/test_binxrd.db']
-Loaded data from: ['/data/zzn/xrdsim/val_db/test_binxrd.db']
-['/data/zzn/xrdsim/test_db/binxrd.db']
-Loaded data from: ['/data/zzn/xrdsim/test_db/binxrd.db']
-Traceback (most recent call last):
-  File "/home/trf/python_work/XRDBench/main.py", line 62, in <module>
-    train(args)
-  File "/home/trf/python_work/XRDBench/train.py", line 44, in train
-    train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
-  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 344, in __init__
-    sampler = RandomSampler(dataset, generator=generator)  # type: ignore[arg-type]
-  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/utils/data/sampler.py", line 106, in __init__
-    if not isinstance(self.num_samples, int) or self.num_samples <= 0:
-  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/torch/utils/data/sampler.py", line 114, in num_samples
-    return len(self.data_source)
-  File "/home/trf/python_work/XRDBench/dataset/dataset.py", line 13, in __len__
-    total_length = sum(len(db) for db in self.dbs)
-  File "/home/trf/python_work/XRDBench/dataset/dataset.py", line 13, in <genexpr>
-    total_length = sum(len(db) for db in self.dbs)
-  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/ase/db/core.py", line 506, in __len__
-    return self.count()
-  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/ase/parallel.py", line 244, in new_func
-    return func(*args, **kwargs)
-  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/ase/db/sqlite.py", line 727, in count
-    with self.managed_connection() as con:
-  File "/home/trf/envs/python_matlab/lib/python3.10/contextlib.py", line 135, in __enter__
-    return next(self.gen)
-  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/ase/db/sqlite.py", line 192, in managed_connection
-    con = self.connection or self._connect()
-  File "/home/trf/envs/python_matlab/lib/python3.10/site-packages/ase/db/sqlite.py", line 173, in _connect
-    return sqlite3.connect(self.filename, timeout=20)
-sqlite3.OperationalError: unable to open database file
-wandb: Waiting for W&B process to finish... (failed 1). Press Control-C to abort syncing.
-wandb: - 0.028 MB of 0.028 MB uploaded (0.000 MB deduped)wandb: \ 0.028 MB of 0.028 MB uploaded (0.000 MB deduped)wandb: - 0.028 MB of 0.028 MB uploaded (0.000 MB deduped)wandb: | 0.028 MB of 0.028 MB uploaded (0.000 MB deduped)wandb: \ 0.028 MB of 0.028 MB uploaded (0.000 MB deduped)wandb: / 0.028 MB of 0.028 MB uploaded (0.000 MB deduped)wandb: | 0.028 MB of 0.028 MB uploaded (0.000 MB deduped)wandb: - 0.028 MB of 0.028 MB uploaded (0.000 MB deduped)wandb: 🚀 View run 2024-04-18 15:28:38 at: https://wandb.ai/hkustgz-batteryinformatics/XRDBench/runs/dkx6ebkg
-wandb: ️⚡ View job at https://wandb.ai/hkustgz-batteryinformatics/XRDBench/jobs/QXJ0aWZhY3RDb2xsZWN0aW9uOjE2MzY5OTI4OA==/version_details/v2
-wandb: Synced 6 W&B file(s), 0 media file(s), 2 artifact file(s) and 0 other file(s)
-wandb: Find logs at: ./wandb/run-20240418_152839-dkx6ebkg/logs
-wandb: / 0.028 MB of 0.028 MB uploaded (0.000 MB deduped)wandb: - 0.028 MB of 0.028 MB uploaded (0.000 MB deduped)./scripts/spg.sh: 8: u: not found
-wandb: \ 0.028 MB of 0.028 MB uploaded (0.000 MB deduped)wandb: | 0.028 MB of 0.028 MB uploaded (0.000 MB deduped)wandb: 🚀 View run 2024-04-18 15:28:46 at: https://wandb.ai/hkustgz-batteryinformatics/XRDBench/runs/pabbrxdo
-wandb: ️⚡ View job at https://wandb.ai/hkustgz-batteryinformatics/XRDBench/jobs/QXJ0aWZhY3RDb2xsZWN0aW9uOjE2MzY5OTI4OA==/version_details/v2
-wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
-wandb: Find logs at: ./wandb/run-20240418_152847-pabbrxdo/logs
-./scripts/spg.sh: 8: pu: not found
