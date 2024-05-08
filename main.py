@@ -34,7 +34,7 @@ if __name__ == "__main__":
     parser.add_argument('--task', type=str, default="crysystem")
     
     # optimization
-    parser.add_argument('--num_workers', type=int, default=4,
+    parser.add_argument('--num_workers', type=int, default=32,
                         help='Num workers in dataloader')
     parser.add_argument('--batch_size', type=int, default=128,
                         help='Batch size. Does not scale with number of gpus.')
@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
     # GPU
     parser.add_argument('--use_gpu', type=bool, default=True, help='use gpu')
-    parser.add_argument('--gpu', type=int, default=6, help='gpu')
+    parser.add_argument('--gpu', type=int, default=2, help='gpu')
 
     args = parser.parse_args()
     
