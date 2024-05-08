@@ -15,7 +15,7 @@ class Model(nn.Module):
         self.dropout3 = nn.Dropout(0.3)
         self.avg_pool3 = nn.AvgPool1d(kernel_size=3, stride=1)
         
-        mlp_in_features = 4996*80
+        mlp_in_features = 96*80
         if args.task == 'spg':
             self.MLP = nn.Sequential(nn.Flatten(), nn.Linear(mlp_in_features, 2300),
                                  nn.ReLU(), nn.Dropout(0.5), nn.Linear(2300, 1150),
@@ -37,7 +37,7 @@ class Model(nn.Module):
         x = F.relu(self.cnn3(x))
         x = self.dropout3(x)
         x = self.avg_pool3(x)
-        print(x.shape)
+
         x = self.MLP(x)
         x = F.softmax(x, dim=1)
         return x
