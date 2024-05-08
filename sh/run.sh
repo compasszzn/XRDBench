@@ -2,8 +2,8 @@
 
 # 定义参数
 
-
-models=('cnn2' 'cnn3' 'icnn' 'pqnet' 'icsd' 'mp' 'autoanalyzer' 'xca')
+models=('mlp')
+# models=('cnn2' 'cnn3' 'icnn' 'pqnet' 'icsd' 'mp' 'autoanalyzer' 'xca')
 seeds=('100' '200' '300' '400' '500')
 # models=('cnn2')
 tasks=('spg')
