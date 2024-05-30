@@ -4,7 +4,7 @@ import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 import torch.nn.functional as F
 
-from model import MIC_CNN2
+from model import MIC_CNN2, IUCrj_CNN, iTransformer, GPT4TS, PatchTST
 from model import MIC_CNN3 
 from model import ICNN
 from model import PQNET
@@ -12,7 +12,7 @@ from model import ICSD
 from model import MP
 from model import AutoAnalyzer
 from model import XCA
-from model import IUCrJ_CNN, NPCNN, CPICANN, FCN
+from model import NPCNN, CPICANN, FCN
 from dataset.dataset import ASEDataset
 from tqdm import tqdm
 import time
@@ -39,9 +39,9 @@ def train(args,nowtime):
     # inter = t2 - t1
     # print(inter)
 
-    train_dataset = ASEDataset(['/home/trf/python_work/XRD_Data/xrdsim/train_1/binxrd.db','/home/trf/python_work/XRD_Data/xrdsim/train_2/binxrd.db'],False)
-    val_dataset = ASEDataset(['/home/trf/python_work/XRD_Data/xrdsim/val_db/test_binxrd.db'],False)
-    test_dataset = ASEDataset(['/home/trf/python_work/XRD_Data/xrdsim/test_db/binxrd.db'],False)
+    train_dataset = ASEDataset(['/data/XRD_Data/xrdsim/train_1/binxrd.db','/data/XRD_Data/xrdsim/train_2/binxrd.db'],False)
+    val_dataset = ASEDataset(['/data/XRD_Data/xrdsim/val_db/test_binxrd.db'],False)
+    test_dataset = ASEDataset(['/data/XRD_Data/xrdsim/test_db/binxrd.db'],False)
 
 
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
@@ -65,13 +65,19 @@ def train(args,nowtime):
     elif args.model == 'xca':
         model = XCA.Model(args)
     elif args.model == 'IUCrj_CNN':
-        model = IUCrJ_CNN.Model(args)
+        model = IUCrj_CNN.Model(args)
     elif args.model == 'NPCNN':
         model = NPCNN.Model(args)
     elif args.model == 'CPICANN':
         model = CPICANN.Model(args)
     elif args.model == 'FCN':
         model = FCN.Model(args)
+    elif args.model == 'iTransformer':
+        model = iTransformer.Model(args)
+    elif args.model == 'GPT4TS':
+        model = GPT4TS.Model(args)
+    elif args.model == 'PatchTST':
+        model = PatchTST.Model(args)
     # nowtime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     # save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}'
     # if not os.path.exists('./checkpoints'):

@@ -27,11 +27,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--epochs', type=int, default=50,
                         help='number of epochs')
-    parser.add_argument('--model', type=str, default="FCN",
+    parser.add_argument('--model', type=str, default="GPT4TS",
                         help='Model name')
-    parser.add_argument('--seed', type=int, default=300, metavar='N',
+    parser.add_argument('--seed', type=int, default=500, metavar='N',
                         help='the rand seed')
-    parser.add_argument('--task', type=str, default="crysystem")
+    parser.add_argument('--task', type=str, default="spg")
     
     # optimization
     parser.add_argument('--num_workers', type=int, default=4,
@@ -44,10 +44,33 @@ if __name__ == "__main__":
                         help='patience for early stopping')
     parser.add_argument('--warmup-epochs', default=2, type=int, metavar='N',
                         help='number of warmup epochs')
-
+    
+    # For time-series models
+    parser.add_argument('--enc_in', type=int, default=1, help='encoder input size')
+    parser.add_argument('--d_model', type=int, default=128,
+                        help='dimension of model')
+    parser.add_argument('--e_layers', type=int, default=2,
+                        help='num of encoder layers')
+    parser.add_argument('--d_ff', type=int, default=64,
+                        help='dimension of fcn')
+    parser.add_argument('--dropout', type=int, default=0.1,
+                        help='dropou')
+    parser.add_argument('--factor', type=int, default=5,
+                        help='attn factor')
+    parser.add_argument('--n_heads', type=int, default=8, help='num of heads')
+    parser.add_argument('--patch_len', type=int, default=512, help='patch length')
+    parser.add_argument('--stride', type=int, default=512, help='patch stride')
+    parser.add_argument('--activation', type=str, default='gelu', 
+                        help='activation')
+    parser.add_argument('--output_attention', action='store_true', default=False, 
+                        help='whether to output attention in ecoder')
+    parser.add_argument('--llm_layers', type=int, default=3, 
+                        help='num of the LLm layers')
+    parser.add_argument('--mlp', type=int, default=0, 
+                        help='set 1 to tune the MLP in GPT4TS')
     # GPU
     parser.add_argument('--use_gpu', type=bool, default=True, help='use gpu')
-    parser.add_argument('--gpu', type=int, default=6, help='gpu')
+    parser.add_argument('--gpu', type=int, default=7, help='gpu')
 
     args = parser.parse_args()
     
