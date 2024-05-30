@@ -34,7 +34,7 @@ if __name__ == "__main__":
     parser.add_argument('--task', type=str, default="spg")
     
     # optimization
-    parser.add_argument('--num_workers', type=int, default=4,
+    parser.add_argument('--num_workers', type=int, default=32,
                         help='Num workers in dataloader')
     parser.add_argument('--batch_size', type=int, default=128,
                         help='Batch size. Does not scale with number of gpus.')

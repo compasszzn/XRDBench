@@ -12,7 +12,9 @@ from model import ICSD
 from model import MP
 from model import AutoAnalyzer
 from model import XCA
-from model import NPCNN, CPICANN, FCN
+
+
+from model import IUCrJ_CNN, NPCNN, CPICANN, FCN, MLP,NPCNN, CPICANN, FCN
 from dataset.dataset import ASEDataset
 from tqdm import tqdm
 import time
@@ -78,6 +80,9 @@ def train(args,nowtime):
         model = GPT4TS.Model(args)
     elif args.model == 'PatchTST':
         model = PatchTST.Model(args)
+    elif args.model == 'mlp':
+        model = MLP.Model(args)
+
     # nowtime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     # save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}'
     # if not os.path.exists('./checkpoints'):
