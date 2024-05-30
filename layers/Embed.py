@@ -15,7 +15,7 @@ class ReplicationPad1d(nn.Module):
         return output
 
 class PositionalEmbedding(nn.Module):
-    def __init__(self, d_model, max_len=5000):
+    def __init__(self, d_model, max_len=10000):
         super(PositionalEmbedding, self).__init__()
         # Compute the positional encodings once in log space.
         pe = torch.zeros(max_len, d_model).float()

@@ -27,11 +27,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--epochs', type=int, default=50,
                         help='number of epochs')
-    parser.add_argument('--model', type=str, default="GPT4TS",
+    parser.add_argument('--model', type=str, default="Transformer",
                         help='Model name')
     parser.add_argument('--seed', type=int, default=500, metavar='N',
                         help='the rand seed')
-    parser.add_argument('--task', type=str, default="spg")
+    parser.add_argument('--task', type=str, default="crysystem")
     
     # optimization
     parser.add_argument('--num_workers', type=int, default=32,
@@ -68,9 +68,11 @@ if __name__ == "__main__":
                         help='num of the LLm layers')
     parser.add_argument('--mlp', type=int, default=0, 
                         help='set 1 to tune the MLP in GPT4TS')
+    parser.add_argument('--seq_len', type=int, default=8192, 
+                        help='The length of XRD')
     # GPU
     parser.add_argument('--use_gpu', type=bool, default=True, help='use gpu')
-    parser.add_argument('--gpu', type=int, default=7, help='gpu')
+    parser.add_argument('--gpu', type=int, default=6, help='gpu')
 
     args = parser.parse_args()
     
