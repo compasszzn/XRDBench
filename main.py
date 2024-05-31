@@ -27,7 +27,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--epochs', type=int, default=50,
                         help='number of epochs')
-    parser.add_argument('--model', type=str, default="Transformer",
+    parser.add_argument('--model', type=str, default="transformer",
                         help='Model name')
     parser.add_argument('--seed', type=int, default=500, metavar='N',
                         help='the rand seed')

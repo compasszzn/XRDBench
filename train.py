@@ -14,7 +14,7 @@ from model import AutoAnalyzer
 from model import XCA
 
 
-from model import NPCNN, CPICANN, FCN, MLP,NPCNN, CPICANN, FCN, Transformer
+from model import NPCNN, CPICANN, FCN, MLP,NPCNN, CPICANN, FCN, Transformer, GRU, LSTM, RNN
 from dataset.dataset import ASEDataset
 from tqdm import tqdm
 import time
@@ -33,17 +33,14 @@ def train(args,nowtime):
         device = torch.device('cuda:{}'.format(args.gpu))
     else:
         device = torch.device('cpu')
-    # t1=time.time()
-    # train_file_paths = ['/hpc2hdd/home/zzheng078/jhspoolers/xrdsim/train_1/binxrd.db']
-    # val_file_paths = ['/hpc2hdd/home/zzheng078/jhspoolers/xrdsim/val_db/test_binxrd.db']
-    # test_file_paths = ['/hpc2hdd/home/zzheng078/jhspoolers/xrdsim/test_db/binxrd.db']
-    # t2=time.time()
-    # inter = t2 - t1
-    # print(inter)
 
-    train_dataset = ASEDataset(['/data/XRD_Data/xrdsim/train_1/binxrd.db','/data/XRD_Data/xrdsim/train_2/binxrd.db'],False)
-    val_dataset = ASEDataset(['/data/XRD_Data/xrdsim/val_db/test_binxrd.db'],False)
-    test_dataset = ASEDataset(['/data/XRD_Data/xrdsim/test_db/binxrd.db'],False)
+    train_dataset = ASEDataset(['/data/zzn/xrdsim/train_1/binxrd.db','/data/zzn/xrdsim/train_2/binxrd.db'],False)
+    val_dataset = ASEDataset(['/data/zzn/xrdsim/val_db/test_binxrd.db'],False)
+    test_dataset = ASEDataset(['/data/zzn/xrdsim/test_db/binxrd.db'],False)
+
+    # train_dataset = ASEDataset(['/data/XRD_Data/xrdsim/train_1/binxrd.db','/data/XRD_Data/xrdsim/train_2/binxrd.db'],False)
+    # val_dataset = ASEDataset(['/data/XRD_Data/xrdsim/val_db/test_binxrd.db'],False)
+    # test_dataset = ASEDataset(['/data/XRD_Data/xrdsim/test_db/binxrd.db'],False)
 
 
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
@@ -82,7 +79,13 @@ def train(args,nowtime):
         model = PatchTST.Model(args)
     elif args.model == 'mlp':
         model = MLP.Model(args)
-    elif args.model == 'Transformer':
+    elif args.model == 'lstm':
+        model = LSTM.Model(args)
+    elif args.model == 'rnn':
+        model = RNN.Model(args)
+    elif args.model == 'gru':
+        model = GRU.Model(args)
+    elif args.model == 'transformer':
         model = Transformer.Model(args)
 
     save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}_{args.seed}'
@@ -109,14 +112,7 @@ def train(args,nowtime):
         train_loss, _ = run_epoch(model, optimizer, criterion, epoch, train_loader, device, args)
         val_loss, _ = run_epoch(model, optimizer, criterion, epoch, val_loader,device, args, backprop=False)
         test_loss, res = run_epoch(model, optimizer, criterion, epoch, test_loader,device, args, backprop=False)
-        # if val_loss < best_val_loss:
-        #     best_val_loss = val_loss
-        #     best_test_loss = test_loss
-        #     best_test_accuracy = res['accuracy']
-        #     best_test_precision = res['macro_precision']
-        #     best_test_recall = res['macro_recall']
-        #     best_test_macrof1=res['macro_f1']
-        #     best_epoch = epoch
+
         wandb.log({"epoch": epoch, "val_loss": val_loss, 
                    "test_loss":test_loss, "test_f1":res['macro_f1'],
                    "test_precision":res['macro_precision'],
