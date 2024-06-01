@@ -6,7 +6,10 @@ nohup.out
 
 # checkpoints
 checkpoints/
+checkpoints_forZinan/
+checkpoints_cp/
 outs/
 log_all/
 log_new/
 wandb/
+sh/
