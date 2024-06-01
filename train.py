@@ -98,7 +98,6 @@ def train(args,nowtime):
     elif args.model == 'bigru':
         model = BiGRU.Model(args)
 
-
     save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}_{args.seed}'
     if not os.path.exists('./checkpoints'):
         os.mkdir('./checkpoints')
