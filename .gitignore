@@ -10,3 +10,4 @@ outs/
 log_all/
 log_new/
 wandb/
+sh/

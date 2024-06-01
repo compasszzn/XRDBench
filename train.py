@@ -14,7 +14,7 @@ from model import AutoAnalyzer
 from model import XCA
 
 
-from model import NPCNN, CPICANN, FCN, MLP,NPCNN, CPICANN, FCN, Transformer, GRU, LSTM, RNN
+from model import NPCNN, CPICANN, FCN, MLP,NPCNN, CPICANN, FCN, Transformer, GRU, LSTM, RNN, BiGRU, BiLSTM, BiRNN
 from dataset.dataset import ASEDataset
 from tqdm import tqdm
 import time
@@ -87,6 +87,12 @@ def train(args,nowtime):
         model = GRU.Model(args)
     elif args.model == 'transformer':
         model = Transformer.Model(args)
+    elif args.model == 'bilstm':
+        model = BiLSTM.Model(args)
+    elif args.model == 'birnn':
+        model = BiRNN.Model(args)
+    elif args.model == 'bigru':
+        model = BiGRU.Model(args)
 
     save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}_{args.seed}'
     if not os.path.exists('./checkpoints'):
