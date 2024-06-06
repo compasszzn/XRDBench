@@ -25,7 +25,7 @@ import json
 import wandb
 import datetime
 import warnings
-
+time_exp_dic = {'time': 0, 'counter': 0}
 
 def train(args,nowtime):
     warnings.filterwarnings("ignore")
@@ -126,7 +126,7 @@ def train(args,nowtime):
         wandb.log({"epoch": epoch, "val_loss": val_loss, 
                    "test_loss":test_loss, "test_f1":res['macro_f1'],
                    "test_precision":res['macro_precision'],
-                   "test_recall":res['macro_recall'],"test_acc": res['accuracy']})
+                   "test_recall":res['macro_recall'],"test_acc": res['accuracy'],"infer_time":time_exp_dic['time'] / time_exp_dic['counter']})
         early_stopping(epoch,val_loss,test_loss,res, model, save_path)
         if early_stopping.early_stop:
             print("Early stopping")
@@ -162,7 +162,15 @@ def run_epoch(model, optimizer, criterion, epoch, loader, device, args, backprop
         batch_size=intensity.shape[0]
         if backprop:
             optimizer.zero_grad()
+
+            torch.cuda.synchronize()
+            t1 = time.time()
             outputs = model(intensity)
+            torch.cuda.synchronize()
+            t2 = time.time()
+            time_exp_dic['time'] += t2 - t1
+            time_exp_dic['counter'] += 1
+
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()

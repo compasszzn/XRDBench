@@ -29,12 +29,12 @@ if __name__ == "__main__":
                         help='number of epochs')
     parser.add_argument('--model', type=str, default="Autoformer",
                         help='Model name')
-    parser.add_argument('--seed', type=int, default=500, metavar='N',
+    parser.add_argument('--seed', type=int, default=100, metavar='N',
                         help='the rand seed')
-    parser.add_argument('--task', type=str, default="spg")
+    parser.add_argument('--task', type=str, default="crysystem")
     
     # optimization
-    parser.add_argument('--num_workers', type=int, default=4,
+    parser.add_argument('--num_workers', type=int, default=32,
                         help='Num workers in dataloader')
     parser.add_argument('--batch_size', type=int, default=128,
                         help='Batch size. Does not scale with number of gpus.')
@@ -57,7 +57,7 @@ if __name__ == "__main__":
                         help='dropou')
     parser.add_argument('--factor', type=int, default=5,
                         help='attn factor')
-    parser.add_argument('--n_heads', type=int, default=2, help='num of heads')
+    parser.add_argument('--n_heads', type=int, default=1, help='num of heads')
     parser.add_argument('--patch_len', type=int, default=64, help='patch length')
     parser.add_argument('--stride', type=int, default=64, help='patch stride')
     parser.add_argument('--activation', type=str, default='gelu', 
@@ -68,7 +68,7 @@ if __name__ == "__main__":
                         help='num of the LLm layers')
     parser.add_argument('--mlp', type=int, default=0, 
                         help='set 1 to tune the MLP in GPT4TS')
-    parser.add_argument('--seq_len', type=int, default=8192, 
+    parser.add_argument('--seq_len', type=int, default=3501, 
                         help='The length of XRD')
     parser.add_argument('--moving_avg', type=int, default=25, help='window size of moving average')
     # GPU

@@ -58,8 +58,8 @@ class Model(nn.Module):
 
     def classification(self, x):
         # enc
-        x = F.interpolate(x,size=8192,mode='linear', align_corners=False)
-        x = x.reshape(-1,8192,1)
+
+        x = x.reshape(-1,3501,1)
         enc_out = self.enc_embedding(x, None)
         enc_out, attns = self.encoder(enc_out, attn_mask=None)
 
