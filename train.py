@@ -1,20 +1,8 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import DataLoader, TensorDataset
-import torch.nn.functional as F
-
-from model import MIC_CNN2, IUCrj_CNN, iTransformer, GPT4TS, PatchTST
-from model import MIC_CNN3 
-from model import ICNN
-from model import PQNET
-from model import ICSD
-from model import MP
-from model import AutoAnalyzer
-from model import XCA
-
-from model import NPCNN, CPICANN, FCN, MLP,NPCNN, CPICANN, FCN, Transformer, GRU, LSTM, RNN, BiGRU, BiLSTM, BiRNN, DLinear, Autoformer
-
+from torch.utils.data import DataLoader
+from model import CNN1,CNN2,CNN3,CNN4,CNN5,CNN6,CNN7,CNN8,CNN9,CNN10,CNN11, MLP, GRU, LSTM, RNN, BiGRU, BiLSTM, BiRNN, Transformer, iTransformer, PatchTST
 from dataset.dataset import ASEDataset
 from tqdm import tqdm
 import time
@@ -34,69 +22,57 @@ def train(args,nowtime):
     else:
         device = torch.device('cpu')
 
-    train_dataset = ASEDataset(['/data/zzn/xrdsim/train_1/binxrd.db','/data/zzn/xrdsim/train_2/binxrd.db'],False)
-    val_dataset = ASEDataset(['/data/zzn/xrdsim/val_db/test_binxrd.db'],False)
-    test_dataset = ASEDataset(['/data/zzn/xrdsim/test_db/binxrd.db'],False)
-
-    # train_dataset = ASEDataset(['/data/XRD_Data/xrdsim/train_1/binxrd.db','/data/XRD_Data/xrdsim/train_2/binxrd.db'],False)
-    # val_dataset = ASEDataset(['/data/XRD_Data/xrdsim/val_db/test_binxrd.db'],False)
-    # test_dataset = ASEDataset(['/data/XRD_Data/xrdsim/test_db/binxrd.db'],False)
+    train_dataset = ASEDataset([os.path.join(args.datapath, 'train_1/binxrd.db'),os.path.join(args.datapath, 'train_2/binxrd.db')],False)
+    val_dataset = ASEDataset([os.path.join(args.datapath, 'val_db/test_binxrd.db')],False)
+    test_dataset = ASEDataset([os.path.join(args.datapath, 'test_db/binxrd.db')],False)
 
 
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
     val_loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers,drop_last=False)
     test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers,drop_last=False)
 
-    if args.model == 'cnn2':
-        model = MIC_CNN2.Model(args)
+    if args.model == 'cnn1':
+        model = CNN1.Model(args)
+    elif args.model == 'cnn2':
+        model = CNN2.Model(args)
     elif args.model == 'cnn3':
-        model = MIC_CNN3.Model(args)
-    elif args.model == 'icnn':
-        model = ICNN.Model(args)
-    elif args.model == 'pqnet':
-        model = PQNET.Model(args)
-    elif args.model == 'icsd':
-        model = ICSD.Model(args)
-    elif args.model == 'mp':
-        model = MP.Model(args)
-    elif args.model == 'autoanalyzer':
-        model = AutoAnalyzer.Model(0.7,args)
-    elif args.model == 'xca':
-        model = XCA.Model(args)
-    elif args.model == 'IUCrj_CNN':
-        model = IUCrj_CNN.Model(args)
-    elif args.model == 'NPCNN':
-        model = NPCNN.Model(args)
-    elif args.model == 'CPICANN':
-        model = CPICANN.Model(args)
-    elif args.model == 'FCN':
-        model = FCN.Model(args)
-    elif args.model == 'iTransformer':
-        model = iTransformer.Model(args)
-    elif args.model == 'GPT4TS':
-        model = GPT4TS.Model(args)
-    elif args.model == 'PatchTST':
-        model = PatchTST.Model(args)
+        model = CNN3.Model(args)
+    elif args.model == 'cnn4':
+        model = CNN4.Model(args)
+    elif args.model == 'cnn5':
+        model = CNN5.Model(args)
+    elif args.model == 'cnn6':
+        model = CNN6.Model(args)
+    elif args.model == 'cnn7':
+        model = CNN7.Model(0.7,args)
+    elif args.model == 'cnn8':
+        model = CNN8.Model(args)
+    elif args.model == 'cnn9':
+        model = CNN9.Model(args)
+    elif args.model == 'cnn10':
+        model = CNN10.Model(args)
+    elif args.model == 'cnn11':
+        model = CNN11.Model(args)
     elif args.model == 'mlp':
         model = MLP.Model(args)
-    elif args.model == 'lstm':
-        model = LSTM.Model(args)
     elif args.model == 'rnn':
         model = RNN.Model(args)
+    elif args.model == 'lstm':
+        model = LSTM.Model(args)
     elif args.model == 'gru':
         model = GRU.Model(args)
-    elif args.model == 'transformer':
-        model = Transformer.Model(args)
-    elif args.model == 'DLinear':
-        model = DLinear.Model(args)
-    elif args.model == 'Autoformer':
-        model = Autoformer.Model(args)
-    elif args.model == 'bilstm':
-        model = BiLSTM.Model(args)
     elif args.model == 'birnn':
         model = BiRNN.Model(args)
+    elif args.model == 'bilstm':
+        model = BiLSTM.Model(args)
     elif args.model == 'bigru':
         model = BiGRU.Model(args)
+    elif args.model == 'transformer':
+        model = Transformer.Model(args)
+    elif args.model == 'iTransformer':
+        model = iTransformer.Model(args)
+    elif args.model == 'PatchTST':
+        model = PatchTST.Model(args)
 
     save_path = f'./checkpoints/{args.task}-{args.model}_lr{args.lr}_bs{args.batch_size}_{nowtime}_{args.seed}'
     if not os.path.exists('./checkpoints'):
@@ -105,19 +81,11 @@ def train(args,nowtime):
     with open(save_path+'/args.json', 'w') as f:
         json.dump(args.__dict__, f)
     model = model.to(device)
-        
-    # Define loss function and optimizer
+
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=args.lr)
-    # # Training loop
-    # best_val_loss = 1e8
-    # best_test_loss = 1e8
-    # best_epoch = 0
-    # best_test_accuracy = 0
-    # best_test_precision = 0
-    # best_test_recall = 0
-    # best_test_macrof1=0
     early_stopping = EarlyStopping(patience=args.patience, verbose=True)
+
     for epoch in range(args.epochs):
         train_loss, _ = run_epoch(model, optimizer, criterion, epoch, train_loader, device, args)
         val_loss, _ = run_epoch(model, optimizer, criterion, epoch, val_loader,device, args, backprop=False)
@@ -179,8 +147,7 @@ def run_epoch(model, optimizer, criterion, epoch, loader, device, args, backprop
             loss = criterion(outputs, labels)
 
         _, predicted = torch.max(outputs, 1)
-        # accuracy = (predicted == labels).sum().item()
-        # res['accuracy'] += accuracy
+
         res['loss'] += loss.item()*batch_size
         res['counter'] += batch_size
 

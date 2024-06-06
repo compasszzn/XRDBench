@@ -27,11 +27,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--epochs', type=int, default=50,
                         help='number of epochs')
-    parser.add_argument('--model', type=str, default="Autoformer",
+    parser.add_argument('--model', type=str, default="cnn1",
                         help='Model name')
     parser.add_argument('--seed', type=int, default=100, metavar='N',
                         help='the rand seed')
     parser.add_argument('--task', type=str, default="crysystem")
+    parser.add_argument('--datapath', type=str, default="/data/zzn/xrdsim")
     
     # optimization
     parser.add_argument('--num_workers', type=int, default=32,
@@ -44,8 +45,12 @@ if __name__ == "__main__":
                         help='patience for early stopping')
     parser.add_argument('--warmup-epochs', default=2, type=int, metavar='N',
                         help='number of warmup epochs')
-    
-    # For time-series models
+
+    # GPU
+    parser.add_argument('--use_gpu', type=bool, default=True, help='use gpu')
+    parser.add_argument('--gpu', type=int, default=0, help='gpu')
+
+    #### only For time-series models ####
     parser.add_argument('--enc_in', type=int, default=1, help='encoder input size')
     parser.add_argument('--d_model', type=int, default=128,
                         help='dimension of model')
@@ -57,7 +62,7 @@ if __name__ == "__main__":
                         help='dropou')
     parser.add_argument('--factor', type=int, default=5,
                         help='attn factor')
-    parser.add_argument('--n_heads', type=int, default=1, help='num of heads')
+    parser.add_argument('--n_heads', type=int, default=2, help='num of heads')
     parser.add_argument('--patch_len', type=int, default=64, help='patch length')
     parser.add_argument('--stride', type=int, default=64, help='patch stride')
     parser.add_argument('--activation', type=str, default='gelu', 
@@ -68,19 +73,17 @@ if __name__ == "__main__":
                         help='num of the LLm layers')
     parser.add_argument('--mlp', type=int, default=0, 
                         help='set 1 to tune the MLP in GPT4TS')
-    parser.add_argument('--seq_len', type=int, default=3501, 
+    parser.add_argument('--seq_len', type=int, default=8192, 
                         help='The length of XRD')
     parser.add_argument('--moving_avg', type=int, default=25, help='window size of moving average')
-    # GPU
-    parser.add_argument('--use_gpu', type=bool, default=True, help='use gpu')
-    parser.add_argument('--gpu', type=int, default=0, help='gpu')
+
 
     args = parser.parse_args()
     
 
     model_result = {'name': args.model,'task':args.task}
 
-    # test_loss_list, macro_f1_list, macro_precision_list,macro_recall_list,test_accuracy_list = [], [], [], [], []
+
     if args.seed < 0:
         seed = random.randint(0,1000)
     else:
@@ -89,35 +92,10 @@ if __name__ == "__main__":
     nowtime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     wandb.login()
     wandb.init(
-        # set the wandb project where this run will be logged
-        project="Official_XRDBench",
-        entity="xrdbench",
-        # track hyperparameters and run metadata
+        project="XRDBench",
         config=args.__dict__,
         name=nowtime
         )
     output=train(args,nowtime)
-    # test_loss_list.append(output.best_test_loss)
-    # macro_f1_list.append(output.best_test_macrof1)
-    # macro_precision_list.append(output.best_test_precision)
-    # macro_recall_list.append(output.best_test_recall)
-    # test_accuracy_list.append(output.best_test_accuracy)
     wandb.finish()
-    # model_result['loss mean'] = np.mean(test_loss_list)
-    # model_result['loss std'] = np.std(test_loss_list)
-    # model_result['f1 mean'] = np.mean(macro_f1_list)
-    # model_result['f1 std'] = np.std(macro_f1_list)
-    # model_result['precision mean'] = np.mean(macro_precision_list)
-    # model_result['precision std'] = np.std(macro_precision_list)
-    # model_result['recall mean'] = np.mean(macro_recall_list)
-    # model_result['recall std'] = np.std(macro_recall_list)
-    # model_result['accuracy mean'] = np.mean(test_accuracy_list)
-    # model_result['accuracy std'] = np.std(test_accuracy_list)
-    # save_path = f'./output'
-    # if not os.path.exists('./output'):
-    #     os.mkdir('./output')
-    # os.makedirs(save_path, exist_ok=True)
-    # with open(save_path+f"/{args.model}_{args.task}.json", "w") as f:
-    #     json.dump(model_result, f)
-    # print(model_result)
     
