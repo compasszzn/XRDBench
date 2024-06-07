@@ -24,7 +24,7 @@ bash sh/run.sh
 
 
 ``` javascript
-# 1. Point to a local or remote Croissant file
+# 1. Point to the Croissant file
     import mlcroissant as mlc
     url = "https://huggingface.co/datasets/caobin/SimXRDreview/raw/main/simxrd_croissant.json"
 
