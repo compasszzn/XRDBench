@@ -6,6 +6,9 @@ from model import CNN1,CNN2,CNN3,CNN4,CNN5,CNN6,CNN7,CNN8,CNN9,CNN10,CNN11, MLP,
 from dataset.dataset import ASEDataset
 from tqdm import tqdm
 import time
+import wget
+import sys
+from dataset.parse import load_dataset,bar_progress
 from sklearn.metrics import f1_score,precision_score,recall_score,accuracy_score
 import os
 from utils.tools import EarlyStopping, adjust_learning_rate_withWarmup
@@ -22,14 +25,34 @@ def train(args,nowtime):
     else:
         device = torch.device('cpu')
 
+    # 1 : Dataset in DB Files
     train_dataset = ASEDataset([os.path.join(args.datapath, 'train_1/binxrd.db'),os.path.join(args.datapath, 'train_2/binxrd.db')],False)
     val_dataset = ASEDataset([os.path.join(args.datapath, 'val_db/test_binxrd.db')],False)
     test_dataset = ASEDataset([os.path.join(args.datapath, 'test_db/binxrd.db')],False)
 
-
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
     val_loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers,drop_last=False)
     test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers,drop_last=False)
+    
+    """
+    2 : Dataset in TFRecord Files: A Small Dataset for Review
+    # 1. Point to a local or remote Croissant file
+    # import mlcroissant as mlc
+    url = "https://huggingface.co/datasets/caobin/SimXRDreview/raw/main/simxrd_croissant.json"
+
+    # 2. Inspect metadata
+    dataset_info = mlc.Dataset(url).metadata.to_json
+    print(dataset_info)
+
+    for file_info in dataset_info['distribution']:
+        wget.download(file_info['contentUrl'], './', bar=bar_progress)
+
+    # 3. Use Croissant dataset in your ML workload
+    from dataset.parse import load_dataset,bar_progress # defined in our github
+    train_loader = DataLoader(load_dataset(name='train.tfrecord'), batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
+    val_loader = DataLoader(load_dataset(name='val.tfrecord'), batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers,drop_last=False)
+    test_loader = DataLoader(load_dataset(name='test.tfrecord'), batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers,drop_last=False)
+    """
 
     if args.model == 'cnn1':
         model = CNN1.Model(args)
