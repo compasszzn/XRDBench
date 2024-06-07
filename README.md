@@ -19,6 +19,10 @@ bash sh/run.sh
 ```
 
 ## acquire the review data by Croissant
+
++ [review data](https://huggingface.co/datasets/caobin/SimXRDreview)
+
+
 ``` javascript
 # 1. Point to a local or remote Croissant file
     import mlcroissant as mlc
