@@ -3,6 +3,9 @@
 ## Benchmark ｜ [Database](https://github.com/Bin-Cao/SimXRD)
 **Open Source:**  SimXRD-4M is freely available on our website (http://simxrd.caobin.asia/).
 
+## Paper 
++ [arxiv](https://arxiv.org/pdf/2406.15469v1)
+  
 ## Installation
 
 To get started with XRDBench, you'll need to install the following libraries:
