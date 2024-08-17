@@ -20,13 +20,12 @@
 ``` 
 ## Installation
 
-To get started with XRDBench, you'll need to install the following libraries:
-
-- PyTorch
-- tqdm
-- Weights & Biases (wandb)
-- reformer-pytorch
-- einops
+```
+conda create -n xrdbench python=3.10
+conda activate xrdbench
+pip install torch==2.0.1 --index-url https://download.pytorch.org/whl/cu118
+pip install -r requirements.txt
+```
 
 ## Run the Project
 ```
