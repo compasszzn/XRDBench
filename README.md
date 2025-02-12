@@ -1,6 +1,6 @@
 
 # SimXRD-4M
-## Benchmark ｜ [Database](https://github.com/Bin-Cao/SimXRD)
+## [HomePage](https://github.com/Bin-Cao/SimXRD)
 **Open Source:**  SimXRD-4M is freely available on our website (http://simxrd.caobin.asia/) & [Huggingface](https://huggingface.co/AI4Spectro).
 
 ## Paper 
