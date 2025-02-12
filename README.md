@@ -1,23 +1,7 @@
 
 # SimXRD-4M
 ## [HomePage](https://github.com/Bin-Cao/SimXRD)
-**Open Source:**  SimXRD-4M is freely available on our website (http://simxrd.caobin.asia/) & [Huggingface](https://huggingface.co/AI4Spectro).
 
-## Paper 
-+ [arxiv](https://arxiv.org/pdf/2406.15469v1)
-  
-``` javascript
-@misc{cao2024simxrd4mbigsimulatedxray,
-      title={SimXRD-4M: Big Simulated X-ray Diffraction Data Accelerate the Crystalline Symmetry Classification}, 
-      author={Bin Cao and Yang Liu and Zinan Zheng and Ruifeng Tan and Jia Li and Tong-yi Zhang},
-      year={2024},
-      eprint={2406.15469},
-      archivePrefix={arXiv},
-      primaryClass={cond-mat.mtrl-sci},
-      url={https://arxiv.org/abs/2406.15469}, 
-}
-
-``` 
 ## Installation
 
 ```
@@ -56,8 +40,3 @@ bash sh/run.sh
   test_loader = DataLoader(load_dataset(name='test.tfrecord'), batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers,drop_last=False)
 ```
 
-## Kaggle Competition Announcement
-
-To benchmark advanced models and further their development, we are launching a Kaggle competition for space group classification. Participants are invited to upload their predictions based on the [testNOtgt data](https://github.com/Bin-Cao/SimXRD/tree/main/testNOtgt_db) using their trained models. Submit your results on the [Leaderboard](https://www.kaggle.com/competitions/simxrd/leaderboard). 
-
-For more detailed information, please visit the [Kaggle competition page](https://www.kaggle.com/competitions/simxrd).
